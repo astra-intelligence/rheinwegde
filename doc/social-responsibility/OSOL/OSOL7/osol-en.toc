@@ -1,0 +1,82 @@
+\contentsline {section}{\numberline {1}What is One Student One Laptop(OSOL)?}{4}{section.1}%
+\contentsline {section}{\numberline {2}Why OSOL?}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Education would change one life}{4}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}What is Education and Why is it Important?}{4}{subsubsection.2.1.1}%
+\contentsline {subsubsection}{\numberline {2.1.2}How Education Can Empower Individuals and Communities}{5}{subsubsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.2}The Internet and Education}{5}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Unprecedented Access to Information}{6}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}Enhanced Communication and Collaboration}{6}{subsubsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.3}Expanded Access to Educational Resources}{6}{subsubsection.2.2.3}%
+\contentsline {subsubsection}{\numberline {2.2.4}Online Learning and Certification}{6}{subsubsection.2.2.4}%
+\contentsline {subsubsection}{\numberline {2.2.5}Flexible Learning Environments}{6}{subsubsection.2.2.5}%
+\contentsline {subsubsection}{\numberline {2.2.6}Beyond the Classroom}{7}{subsubsection.2.2.6}%
+\contentsline {subsubsection}{\numberline {2.2.7}Cost-Effective Learning Opportunities}{7}{subsubsection.2.2.7}%
+\contentsline {subsection}{\numberline {2.3}The Impact of Artificial Intelligence on Education}{7}{subsection.2.3}%
+\contentsline {subsubsection}{\numberline {2.3.1}Personalized Learning Experiences}{7}{subsubsection.2.3.1}%
+\contentsline {subsubsection}{\numberline {2.3.2}24/7 AI-Powered Assistance}{7}{subsubsection.2.3.2}%
+\contentsline {subsubsection}{\numberline {2.3.3}Enhanced Learning and Reduced Errors}{7}{subsubsection.2.3.3}%
+\contentsline {subsubsection}{\numberline {2.3.4}Streamlining Tasks and Fostering Independent Learning}{7}{subsubsection.2.3.4}%
+\contentsline {section}{\numberline {3}Related Resources}{8}{section.3}%
+\contentsline {subsection}{\numberline {3.1}\href {https://laptop.org/}{One Laptop Per Child}}{8}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}\href {https://www.labdoo.org/deu/de/}{Labdoo Deutschland}}{8}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}\href {https://worldcomputerexchange.org/}{World Computer Exchange}}{9}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}\href {https://www.computeraid.org/}{Computer Aid International}}{9}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}\href {https://cfsk.org/}{Computer for School in Kenya}}{10}{subsection.3.5}%
+\contentsline {subsection}{\numberline {3.6}\href {https://camara.org/}{Camara Education}}{11}{subsection.3.6}%
+\contentsline {subsection}{\numberline {3.7}\href {https://www.close-the-gap.org/}{Close the Gap}}{11}{subsection.3.7}%
+\contentsline {subsection}{\numberline {3.8}\href {https://en.wikipedia.org/wiki/Open_educational_resources}{Open Educational Resources}}{12}{subsection.3.8}%
+\contentsline {subsection}{\numberline {3.9}\href {https://widernet-egranary.org/}{eGranary Digital Library}}{13}{subsection.3.9}%
+\contentsline {subsection}{\numberline {3.10}UNESCO}{14}{subsection.3.10}%
+\contentsline {subsubsection}{\numberline {3.10.1}The Importance of Digital Innovation in Education}{14}{subsubsection.3.10.1}%
+\contentsline {subsubsection}{\numberline {3.10.2}The Role of Artificial Intelligence in Education}{15}{subsubsection.3.10.2}%
+\contentsline {section}{\numberline {4}What OSOL will benfit to Riverty and Bertelsmann?}{15}{section.4}%
+\contentsline {section}{\numberline {5}How OSOL?}{17}{section.5}%
+\contentsline {subsection}{\numberline {5.1}One IT equipment lifecycle}{17}{subsection.5.1}%
+\contentsline {subsubsection}{\numberline {5.1.1}Equipment stages}{17}{subsubsection.5.1.1}%
+\contentsline {subsubsection}{\numberline {5.1.2}Equipment score}{17}{subsubsection.5.1.2}%
+\contentsline {subsubsection}{\numberline {5.1.3}Equipment annual check}{18}{subsubsection.5.1.3}%
+\contentsline {subsection}{\numberline {5.2}OSOL 2D barcode on IT equipment}{18}{subsection.5.2}%
+\contentsline {subsubsection}{\numberline {5.2.1}Stage0 2D barcode data}{18}{subsubsection.5.2.1}%
+\contentsline {subsubsection}{\numberline {5.2.2}Stage1 2D barcode data}{18}{subsubsection.5.2.2}%
+\contentsline {subsubsection}{\numberline {5.2.3}Stage2 2D barcode data}{20}{subsubsection.5.2.3}%
+\contentsline {subsubsection}{\numberline {5.2.4}Stage3 2D barcode data}{21}{subsubsection.5.2.4}%
+\contentsline {subsection}{\numberline {5.3}OSOL preinstalled education content}{21}{subsection.5.3}%
+\contentsline {subsubsection}{\numberline {5.3.1}Online education content}{21}{subsubsection.5.3.1}%
+\contentsline {subsubsection}{\numberline {5.3.2}Offline education content}{21}{subsubsection.5.3.2}%
+\contentsline {subsection}{\numberline {5.4}OSOL Tracer - OSOL Data Management System}{21}{subsection.5.4}%
+\contentsline {subsubsection}{\numberline {5.4.1}OSOL-T Architecture}{21}{subsubsection.5.4.1}%
+\contentsline {subsubsection}{\numberline {5.4.2}OSOL-T Database}{22}{subsubsection.5.4.2}%
+\contentsline {subsubsection}{\numberline {5.4.3}OSOL-T API}{23}{subsubsection.5.4.3}%
+\contentsline {subsubsection}{\numberline {5.4.4}OSOL-T API Management }{23}{subsubsection.5.4.4}%
+\contentsline {subsubsection}{\numberline {5.4.5}OSOL-T GUI}{24}{subsubsection.5.4.5}%
+\contentsline {subsection}{\numberline {5.5}Riverty Computer Center(RCC)}{25}{subsection.5.5}%
+\contentsline {section}{\numberline {6}When OSOL - Schedule}{25}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Step 1}{25}{subsection.6.1}%
+\contentsline {section}{\numberline {7}OSOL Budget }{25}{section.7}%
+\contentsline {section}{\numberline {A}OSOL-T Database metadata}{26}{appendix.A}%
+\contentsline {subsection}{\numberline {A.1}table\_audit\_columns}{26}{subsection.A.1}%
+\contentsline {subsection}{\numberline {A.2}osol.person}{26}{subsection.A.2}%
+\contentsline {subsection}{\numberline {A.3}conf.person\_type}{26}{subsection.A.3}%
+\contentsline {subsection}{\numberline {A.4}conf.language}{27}{subsection.A.4}%
+\contentsline {subsection}{\numberline {A.5}osol.address}{27}{subsection.A.5}%
+\contentsline {subsection}{\numberline {A.6}conf.country}{28}{subsection.A.6}%
+\contentsline {subsection}{\numberline {A.7}osol.communication}{28}{subsection.A.7}%
+\contentsline {subsection}{\numberline {A.8}osol.communication\_mean}{28}{subsection.A.8}%
+\contentsline {subsection}{\numberline {A.9}osol.equip}{29}{subsection.A.9}%
+\contentsline {subsection}{\numberline {A.10}conf.equip\_type}{29}{subsection.A.10}%
+\contentsline {subsection}{\numberline {A.11}osol.monitor}{30}{subsection.A.11}%
+\contentsline {subsection}{\numberline {A.12}osol.monitor\_model}{30}{subsection.A.12}%
+\contentsline {subsection}{\numberline {A.13}osol.keyboard}{31}{subsection.A.13}%
+\contentsline {subsection}{\numberline {A.14}osol.keyboard\_model}{31}{subsection.A.14}%
+\contentsline {subsection}{\numberline {A.15}osol.mouse}{32}{subsection.A.15}%
+\contentsline {subsection}{\numberline {A.16}osol.mouse\_model}{32}{subsection.A.16}%
+\contentsline {subsection}{\numberline {A.17}osol.laptop}{32}{subsection.A.17}%
+\contentsline {subsection}{\numberline {A.18}osol.laptop\_model}{33}{subsection.A.18}%
+\contentsline {subsection}{\numberline {A.19}osol.cpu\_model}{34}{subsection.A.19}%
+\contentsline {subsection}{\numberline {A.20}osol.gpu\_model}{34}{subsection.A.20}%
+\contentsline {subsection}{\numberline {A.21}osol.action}{35}{subsection.A.21}%
+\contentsline {subsection}{\numberline {A.22}osol.action\_type}{35}{subsection.A.22}%
+\contentsline {subsection}{\numberline {A.23}osol.document}{36}{subsection.A.23}%
+\contentsline {subsection}{\numberline {A.24}osol.document\_type}{36}{subsection.A.24}%
+\contentsline {subsection}{\numberline {A.25}osol.sticker\_print}{36}{subsection.A.25}%
+\contentsline {section}{\numberline {B}OSOL-T architecture - why use queue?}{37}{appendix.B}%

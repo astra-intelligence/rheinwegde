@@ -1,0 +1,65 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: osol-en.aux
+Reallocating 'name_of_file' (item size: 1) to 10 items.
+Reallocating 'name_of_file' (item size: 1) to 9 items.
+The style file: plainurl.bst
+Reallocating 'glb_str_end' (item size: 4) to 20 items.
+Reallocating 'glb_str_ptr' (item size: 4) to 20 items.
+Reallocating 'global_strs' (item size: 1) to 4000000 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Database file #1: reference.bib
+Warning--entry type for "role-internet-in-education" isn't style-file defined
+--line 11 of file reference.bib
+Warning--to sort, need author or key in internet-beneficial-students
+Warning--empty year in ai-in-education
+Warning--empty year in how-internet-beneficial-students
+Warning--empty year in education-change-life-world
+Warning--empty year in importance-reliable-internet-student
+Warning--empty year in scalable-ecommerce-web-app
+Warning--empty year in serverless-web-app
+Warning--empty year in unesco-education-transforms-lives
+Warning--empty year in unesco-education-ai
+You've used 14 entries,
+            2943 wiz_defined-function locations,
+            697 strings with 7598 characters,
+and the built_in function-call counts, 4348 in all, are:
+= -- 441
+> -- 59
+< -- 0
++ -- 26
+- -- 10
+* -- 159
+:= -- 534
+add.period$ -- 46
+call.type$ -- 14
+change.case$ -- 47
+chr.to.int$ -- 0
+cite$ -- 23
+duplicate$ -- 158
+empty$ -- 566
+format.name$ -- 10
+if$ -- 1264
+int.to.chr$ -- 0
+int.to.str$ -- 14
+missing$ -- 1
+newline$ -- 75
+num.names$ -- 10
+pop$ -- 166
+preamble$ -- 1
+purify$ -- 41
+quote$ -- 0
+skip$ -- 346
+stack$ -- 0
+substring$ -- 101
+swap$ -- 14
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 48
+warning$ -- 9
+while$ -- 11
+width$ -- 16
+write$ -- 138
+(There were 10 warnings)
