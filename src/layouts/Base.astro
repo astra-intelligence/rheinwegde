@@ -1,0 +1,67 @@
+---
+import '../styles/global.css';
+import { languages, sections, legalPages, contactEmail, t, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description?: string;
+  // Path after the language prefix, used by the language switcher (e.g. "solutions").
+  path?: string;
+}
+
+const { lang, title, description, path = '' } = Astro.props;
+const href = (l: Lang, p: string) => `/${l}/${p ? `${p}/` : ''}`;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title === 'RheinWeg' ? title : `${title} | RheinWeg`}</title>
+    {description && <meta name="description" content={description} />}
+    {Object.keys(languages).map((l) => (
+      <link rel="alternate" hreflang={l} href={new URL(href(l as Lang, path), Astro.site)} />
+    ))}
+  </head>
+  <body class="flex min-h-screen flex-col bg-white text-slate-900">
+    <header class="border-b border-slate-200">
+      <nav class="mx-auto flex max-w-5xl flex-wrap items-center gap-x-6 gap-y-2 px-4 py-4">
+        <a href={href(lang, '')} class="text-lg font-semibold">RheinWeg</a>
+        <ul class="flex flex-wrap gap-x-4 gap-y-1 text-sm">
+          {sections.map((s) => (
+            <li><a href={href(lang, s)} class="hover:underline">{t(lang, `nav.${s}`)}</a></li>
+          ))}
+        </ul>
+        <ul class="ml-auto flex gap-3 text-sm">
+          {Object.entries(languages).map(([l, label]) => (
+            <li>
+              <a
+                href={href(l as Lang, path)}
+                hreflang={l}
+                aria-current={l === lang ? 'true' : undefined}
+                class={l === lang ? 'font-semibold' : 'text-slate-500 hover:underline'}
+              >{label}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </header>
+
+    <main class="mx-auto w-full max-w-5xl flex-1 px-4 py-10">
+      <slot />
+    </main>
+
+    <footer class="border-t border-slate-200 text-sm text-slate-500">
+      <div class="mx-auto flex max-w-5xl flex-wrap gap-x-6 gap-y-2 px-4 py-6">
+        <span>© {new Date().getFullYear()} RheinWeg</span>
+        <a href={`mailto:${contactEmail}`} class="hover:underline">{t(lang, 'contact')}: {contactEmail}</a>
+        {legalPages.map((p) => (
+          <a href={href(lang, p)} class="hover:underline">{t(lang, `nav.${p}`)}</a>
+        ))}
+      </div>
+    </footer>
+  </body>
+</html>
