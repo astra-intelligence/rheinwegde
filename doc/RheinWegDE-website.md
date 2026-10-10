@@ -1,13 +1,18 @@
 # RheinWegDE.de website
 
 ## Technical stack
-I hope to deploy this website to Vercel or other recommendation?
+Decided 2026-10-10:
+- Framework: Astro + TypeScript + Tailwind CSS. Pages written in Markdown via content collections.
+- Languages: German (default), English, Chinese, using Astro i18n routing (`/de/`, `/en/`, `/zh/`).
+- Hosting: Vercel (same account as AiBlocks), static output, custom domain RheinWegDE.de.
+- Contact: `mailto:` link to rheinwegde@gmail.com for now, no form backend.
+- Legal: Impressum and Datenschutzerklärung pages required (German law).
 
 ## Solutions
 ### German-China Trade Communication
 resource is in /Users/yanghan/CODE/GitHub/Amber3/P(Path)/RP(Rhine-Path)/RheinWegDE
 
-## Productions
+## Products
 ### AiBlocks
 https://aiblocks-six.vercel.app/
 ### PATH

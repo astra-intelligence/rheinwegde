@@ -1,0 +1,8 @@
+@import "tailwindcss";
+/* Minimal styles for rendered Markdown (Tailwind preflight resets headings, lists, links). */
+@layer components {
+  .content h2 { @apply mt-8 text-xl font-semibold; }
+  .content h3 { @apply mt-6 text-lg font-semibold; }
+  .content ul { @apply list-disc pl-6; }
+  .content a { @apply text-blue-700 underline hover:text-blue-900; }
+}
