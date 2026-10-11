@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { languages, sections, legalPages, contactEmail, t, type Lang } from '../i18n/ui';
+import { languages, sections, legalPages, t, type Lang } from '../i18n/ui';
 
 interface Props {
   lang: Lang;
@@ -34,6 +34,7 @@ const href = (l: Lang, p: string) => `/${l}/${p ? `${p}/` : ''}`;
           {sections.map((s) => (
             <li><a href={href(lang, s)} class="hover:underline">{t(lang, `nav.${s}`)}</a></li>
           ))}
+          <li><a href={href(lang, 'contact')} class="hover:underline">{t(lang, 'contact')}</a></li>
         </ul>
         <ul class="ml-auto flex gap-3 text-sm">
           {Object.entries(languages).map(([l, label]) => (
@@ -57,7 +58,7 @@ const href = (l: Lang, p: string) => `/${l}/${p ? `${p}/` : ''}`;
     <footer class="border-t border-slate-200 text-sm text-slate-500">
       <div class="mx-auto flex max-w-5xl flex-wrap gap-x-6 gap-y-2 px-4 py-6">
         <span>© {new Date().getFullYear()} RheinWeg</span>
-        <a href={`mailto:${contactEmail}`} class="hover:underline">{t(lang, 'contact')}: {contactEmail}</a>
+        <a href={href(lang, 'contact')} class="hover:underline">{t(lang, 'contact')}</a>
         {legalPages.map((p) => (
           <a href={href(lang, p)} class="hover:underline">{t(lang, `nav.${p}`)}</a>
         ))}
