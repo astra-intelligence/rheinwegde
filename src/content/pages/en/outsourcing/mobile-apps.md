@@ -1,5 +1,6 @@
 ---
 title: Mobile Applications
+order: 3
 ---
 
 Your customers and employees spend much of their day on their phones. We develop mobile apps that bring your services or internal processes to iOS and Android.

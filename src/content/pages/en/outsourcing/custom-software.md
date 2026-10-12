@@ -1,5 +1,6 @@
 ---
 title: Customized Software Systems
+order: 2
 ---
 
 Standard software does not always fit the way your company works. We develop software systems built around your actual processes, from internal tools to complete business applications.

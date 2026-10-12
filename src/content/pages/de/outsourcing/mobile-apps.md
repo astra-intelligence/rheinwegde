@@ -1,5 +1,6 @@
 ---
 title: Mobile Apps
+order: 3
 ---
 
 Ihre Kunden und Mitarbeitenden verbringen einen großen Teil des Tages am Smartphone. Wir entwickeln mobile Apps, die Ihre Dienstleistungen oder internen Abläufe auf iOS und Android bringen.

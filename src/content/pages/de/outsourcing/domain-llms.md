@@ -1,5 +1,6 @@
 ---
 title: Domänenspezifische LLMs
+order: 4
 ---
 
 Allgemeine KI-Modelle wissen ein wenig über alles, aber oft nicht genug über Ihr Fachgebiet. Wir passen große Sprachmodelle (LLMs) an Ihre Branche, Ihre Fachbegriffe und Ihre Dokumente an, damit sie präzise und verlässliche Antworten liefern.

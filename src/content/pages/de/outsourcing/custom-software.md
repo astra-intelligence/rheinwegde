@@ -1,5 +1,6 @@
 ---
 title: Individuelle Softwaresysteme
+order: 2
 ---
 
 Standardsoftware passt nicht immer zur Arbeitsweise Ihres Unternehmens. Wir entwickeln Softwaresysteme, die auf Ihre tatsächlichen Prozesse zugeschnitten sind, von internen Tools bis zu vollständigen Geschäftsanwendungen.
