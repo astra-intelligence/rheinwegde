@@ -1,6 +1,9 @@
 ---
 title: Websites
+order: 1
 ---
+
+![Illustration: mehrsprachige Website auf Desktop und Smartphone](/images/outsourcing/websites.svg)
 
 Ihre Website ist oft der erste Kontakt eines Kunden mit Ihrem Unternehmen. Wir entwickeln moderne, schnelle Websites, die Ihr Unternehmen klar präsentieren, in einer oder mehreren Sprachen.
 

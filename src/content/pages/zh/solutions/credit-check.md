@@ -1,0 +1,22 @@
+---
+title: 中国企业信用调查
+order: 2
+---
+
+如果您希望了解某家企业的详细信息和信用状况,我们从公开渠道调研以下信息(示例,德文版:[RheinWeg-Beispiel-Firma-22-02-2026.xlsx](/downloads/RheinWeg-Beispiel-Firma-22-02-2026.xlsx)):
+
+- 工商信息
+- 股东信息
+- 主要人员
+- 2024 年年报
+- 参保人数
+- 关联企业及人员
+- 疑似实际控制人
+- 受益所有人
+- 行政许可
+- 域名备案
+- 历史域名备案
+
+[![报告示例：Excel 格式的企业详细信息](/images/beispiel-firma.webp)](/images/beispiel-firma.webp)
+
+**费用:** 每家企业 20–100 欧元,视所需详细程度而定。

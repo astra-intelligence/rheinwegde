@@ -1,6 +1,9 @@
 ---
 title: 定制软件系统
+order: 2
 ---
+
+![插图：业务仪表盘与流程图](/images/outsourcing/custom-software.svg)
 
 标准软件不一定适合您公司的工作方式。我们根据您的实际流程开发软件系统，从内部工具到完整的业务应用。
 

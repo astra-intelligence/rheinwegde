@@ -1,6 +1,9 @@
 ---
 title: Domain-Specific LLMs
+order: 4
 ---
+
+![Illustration: company documents feed a local language model that answers questions](/images/outsourcing/domain-llms.svg)
 
 General AI models know a little about everything, but often not enough about your field. We adapt large language models (LLMs) to your industry, your terminology, and your documents, so they deliver precise and reliable answers.
 

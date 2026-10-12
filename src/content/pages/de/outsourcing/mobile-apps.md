@@ -1,6 +1,9 @@
 ---
 title: Mobile Apps
+order: 3
 ---
+
+![Illustration: zwei mobile Apps auf Smartphones](/images/outsourcing/mobile-apps.svg)
 
 Ihre Kunden und Mitarbeitenden verbringen einen großen Teil des Tages am Smartphone. Wir entwickeln mobile Apps, die Ihre Dienstleistungen oder internen Abläufe auf iOS und Android bringen.
 

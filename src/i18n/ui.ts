@@ -20,7 +20,7 @@ export const contactAddress = ['Liying Zhu', 'Im Rosengärtchen 70', '61440 Ober
 
 export const ui = {
   de: {
-    'nav.solutions': 'Lösungen',
+    'nav.solutions': 'Deutsch-Chinesischer Handel',
     'nav.products': 'Produkte',
     'nav.outsourcing': 'Software-Entwicklung',
     'nav.workshops': 'Workshops',
@@ -38,7 +38,7 @@ export const ui = {
     'contact.country': 'Deutschland',
   },
   en: {
-    'nav.solutions': 'Solutions',
+    'nav.solutions': 'German-China Trade',
     'nav.products': 'Products',
     'nav.outsourcing': 'Software Outsourcing',
     'nav.workshops': 'Workshops',
@@ -56,7 +56,7 @@ export const ui = {
     'contact.country': 'Germany',
   },
   zh: {
-    'nav.solutions': '解决方案',
+    'nav.solutions': '中德贸易',
     'nav.products': '产品',
     'nav.outsourcing': '软件外包',
     'nav.workshops': '工作坊',

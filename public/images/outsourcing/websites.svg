@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 360" role="img">
+  <rect width="800" height="360" fill="#f1f5f9"/>
+  <circle cx="680" cy="70" r="90" fill="#dbeafe"/>
+  <circle cx="110" cy="310" r="70" fill="#e0e7ff"/>
+  <!-- browser window -->
+  <rect x="150" y="50" width="500" height="270" rx="14" fill="#fff" stroke="#cbd5e1" stroke-width="2"/>
+  <path d="M150 64a14 14 0 0 1 14-14h472a14 14 0 0 1 14 14v22H150z" fill="#e2e8f0"/>
+  <circle cx="174" cy="68" r="6" fill="#f87171"/><circle cx="194" cy="68" r="6" fill="#fbbf24"/><circle cx="214" cy="68" r="6" fill="#34d399"/>
+  <rect x="240" y="60" width="300" height="16" rx="8" fill="#fff"/>
+  <!-- nav -->
+  <rect x="176" y="104" width="70" height="12" rx="6" fill="#0f172a"/>
+  <rect x="440" y="106" width="40" height="8" rx="4" fill="#94a3b8"/><rect x="490" y="106" width="40" height="8" rx="4" fill="#94a3b8"/><rect x="540" y="106" width="40" height="8" rx="4" fill="#94a3b8"/>
+  <!-- hero -->
+  <rect x="176" y="138" width="448" height="80" rx="10" fill="#2563eb"/>
+  <rect x="200" y="158" width="200" height="14" rx="7" fill="#fff"/>
+  <rect x="200" y="182" width="140" height="10" rx="5" fill="#bfdbfe"/>
+  <rect x="520" y="166" width="80" height="26" rx="13" fill="#fff"/>
+  <!-- cards -->
+  <rect x="176" y="234" width="140" height="66" rx="8" fill="#f8fafc" stroke="#e2e8f0"/>
+  <rect x="330" y="234" width="140" height="66" rx="8" fill="#f8fafc" stroke="#e2e8f0"/>
+  <rect x="484" y="234" width="140" height="66" rx="8" fill="#f8fafc" stroke="#e2e8f0"/>
+  <rect x="190" y="250" width="60" height="8" rx="4" fill="#94a3b8"/><rect x="190" y="266" width="100" height="6" rx="3" fill="#cbd5e1"/>
+  <rect x="344" y="250" width="60" height="8" rx="4" fill="#94a3b8"/><rect x="344" y="266" width="100" height="6" rx="3" fill="#cbd5e1"/>
+  <rect x="498" y="250" width="60" height="8" rx="4" fill="#94a3b8"/><rect x="498" y="266" width="100" height="6" rx="3" fill="#cbd5e1"/>
+  <!-- language badges -->
+  <g font-family="system-ui, sans-serif" font-size="15" font-weight="700" text-anchor="middle">
+    <rect x="610" y="190" width="56" height="32" rx="16" fill="#0f172a"/><text x="638" y="211" fill="#fff">DE</text>
+    <rect x="626" y="232" width="56" height="32" rx="16" fill="#fff" stroke="#0f172a" stroke-width="2"/><text x="654" y="253" fill="#0f172a">EN</text>
+    <rect x="610" y="274" width="56" height="32" rx="16" fill="#2563eb"/><text x="638" y="295" fill="#fff">中文</text>
+  </g>
+  <!-- phone preview -->
+  <rect x="96" y="150" width="84" height="150" rx="14" fill="#0f172a"/>
+  <rect x="104" y="162" width="68" height="126" rx="6" fill="#fff"/>
+  <rect x="110" y="170" width="56" height="34" rx="4" fill="#2563eb"/>
+  <rect x="110" y="212" width="44" height="6" rx="3" fill="#94a3b8"/><rect x="110" y="224" width="56" height="6" rx="3" fill="#cbd5e1"/><rect x="110" y="236" width="50" height="6" rx="3" fill="#cbd5e1"/>
+</svg>
