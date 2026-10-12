@@ -72,13 +72,14 @@ const { Content } = await render(page);
         </aside>
         <article class="min-w-0 max-w-3xl flex-1">
           {topTabs.length > 0 && (
-            <ul class="mb-6 flex gap-4 overflow-x-auto border-b border-slate-200 text-sm">
+            <ul class="mb-6 flex gap-6 border-b border-slate-200 text-sm">
               {topTabs.map((p) => (
-                <li class="shrink-0">
+                <li class="min-w-0">
                   <a
                     href={url(p.id)}
+                    title={p.data.title}
                     aria-current={isActive(p) ? 'page' : undefined}
-                    class={`-mb-px block border-b-2 py-2 ${isActive(p) ? 'border-slate-900 font-semibold' : 'border-transparent text-slate-500 hover:text-slate-900'}`}
+                    class={`-mb-px block truncate border-b-2 py-3 ${isActive(p) ? 'border-slate-900 font-semibold' : 'border-transparent text-slate-500 hover:text-slate-900'}`}
                   >{p.data.title}</a>
                 </li>
               ))}
