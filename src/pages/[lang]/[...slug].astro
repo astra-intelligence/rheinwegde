@@ -6,7 +6,9 @@ import type { Lang } from '../../i18n/ui';
 export async function getStaticPaths() {
   const pages = await getCollection('pages');
   return pages.map((page) => {
-    const [lang, slug] = page.id.split('/');
+    // id is "{lang}/{slug}", where slug may be nested (e.g. "en/outsourcing/websites").
+    const [lang, ...rest] = page.id.split('/');
+    const slug = rest.join('/');
     return { params: { lang, slug }, props: { page } };
   });
 }
