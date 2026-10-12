@@ -3,6 +3,8 @@ title: Connect with Chinese Companies
 order: 3
 ---
 
+![Illustration: German and Chinese companies connected, with a signed contract](/images/solutions/representation.svg)
+
 We can support your company in contacting and working with Chinese companies, including:
 
 - Initial contact

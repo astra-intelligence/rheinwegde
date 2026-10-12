@@ -17,4 +17,6 @@ order: 2
 - 域名备案
 - 历史域名备案
 
+[![报告示例：Excel 格式的企业详细信息](/images/beispiel-firma.webp)](/images/beispiel-firma.webp)
+
 **费用:** 每家企业 20–100 欧元,视所需详细程度而定。

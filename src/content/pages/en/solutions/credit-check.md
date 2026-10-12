@@ -17,4 +17,6 @@ If you are interested in detailed information and the creditworthiness of a spec
 - Domain registrations
 - Historical domain registrations
 
+[![Sample report: company profile in Excel](/images/beispiel-firma.webp)](/images/beispiel-firma.webp)
+
 **Fee:** EUR 20–100 per company, depending on the level of detail required.

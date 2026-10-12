@@ -3,6 +3,8 @@ title: 对接中国企业
 order: 3
 ---
 
+![插图：德国与中国企业建立联系并签署合同](/images/solutions/representation.svg)
+
 我们可协助贵公司联系中国企业并开展合作,包括:
 
 - 初次联系

@@ -17,4 +17,6 @@ Falls Sie an detaillierten Informationen und der Bonität eines bestimmten Unter
 - Domainregistrierungen
 - Historische Domainregistrierungen
 
+[![Beispielbericht: Unternehmensprofil in Excel](/images/beispiel-firma.webp)](/images/beispiel-firma.webp)
+
 **Vergütung:** 20–100 EUR pro Unternehmen, abhängig vom gewünschten Detailgrad.

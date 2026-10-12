@@ -3,6 +3,8 @@ title: Kontakt zu chinesischen Unternehmen
 order: 3
 ---
 
+![Illustration: deutsches und chinesisches Unternehmen verbunden, mit unterzeichnetem Vertrag](/images/solutions/representation.svg)
+
 Wir können Ihr Unternehmen bei der Kontaktaufnahme und Zusammenarbeit mit chinesischen Unternehmen unterstützen, einschließlich:
 
 - Erstkontakt
