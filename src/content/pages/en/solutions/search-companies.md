@@ -20,4 +20,6 @@ Based on your criteria, we prepare a report from the Chinese company database. T
 
 Company name, business status, unified social credit code, registration number, province, city, district/county, legal representative, registered capital, paid-in capital, date of establishment, approval date, former company names, industry, company type, organization code, number of employees covered by social insurance, business scope, business address, last known address, email address (business information), email address (verification information), shareholders, contact phone numbers (from the commercial register, sorted by recency), further contact numbers (2–10), recommended phone number.
 
+[![Sample report: company list in Excel](/images/beispiel-liste.webp)](/images/beispiel-liste.webp)
+
 **Fee:** EUR 1–2 per company, depending on your requirements.

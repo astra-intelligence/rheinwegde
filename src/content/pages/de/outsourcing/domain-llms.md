@@ -3,6 +3,8 @@ title: Domänenspezifische LLMs
 order: 4
 ---
 
+![Illustration: Unternehmensdokumente speisen ein lokales Sprachmodell, das Fragen beantwortet](/images/outsourcing/domain-llms.svg)
+
 Allgemeine KI-Modelle wissen ein wenig über alles, aber oft nicht genug über Ihr Fachgebiet. Wir passen große Sprachmodelle (LLMs) an Ihre Branche, Ihre Fachbegriffe und Ihre Dokumente an, damit sie präzise und verlässliche Antworten liefern.
 
 ## Unser Angebot

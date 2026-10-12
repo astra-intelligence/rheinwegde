@@ -3,6 +3,8 @@ title: Mobile Applications
 order: 3
 ---
 
+![Illustration: two mobile apps on smartphones](/images/outsourcing/mobile-apps.svg)
+
 Your customers and employees spend much of their day on their phones. We develop mobile apps that bring your services or internal processes to iOS and Android.
 
 ## What We Offer

@@ -3,6 +3,8 @@ title: Websites
 order: 1
 ---
 
+![Illustration: multilingual website on desktop and phone](/images/outsourcing/websites.svg)
+
 Your website is often the first contact a customer has with your company. We build modern, fast websites that present your business clearly, in one language or several.
 
 ## What We Offer

@@ -20,4 +20,6 @@ Auf Basis Ihrer Kriterien erstellen wir einen Bericht aus der chinesischen Unter
 
 Firmenname, Geschäftsstatus, Einheitlicher Sozialkreditcode, Registrierungsnummer, Provinz, Stadt, Bezirk/Landkreis, Gesetzlicher Vertreter, Stammkapital, Eingezahltes Kapital, Gründungsdatum, Genehmigungsdatum, Frühere Firmennamen, Branche, Unternehmensart, Organisationscode, Anzahl der sozialversicherungspflichtigen Mitarbeiter, Geschäftsumfang, Geschäftsadresse, Letzte bekannte Adresse, E-Mail-Adresse (Geschäftsinformationen), E-Mail-Adresse (Verifizierungsinformationen), Gesellschafter, Kontakttelefonnummern (laut Handelsregister, nach Aktualität sortiert), Weitere Kontaktnummern (2–10), Empfohlene Telefonnummer.
 
+[![Beispielbericht: Unternehmensliste in Excel](/images/beispiel-liste.webp)](/images/beispiel-liste.webp)
+
 **Vergütung:** 1–2 EUR pro Unternehmen, abhängig von Ihren Anforderungen.

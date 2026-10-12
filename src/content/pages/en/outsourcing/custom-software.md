@@ -3,6 +3,8 @@ title: Customized Software Systems
 order: 2
 ---
 
+![Illustration: business dashboard and process flow](/images/outsourcing/custom-software.svg)
+
 Standard software does not always fit the way your company works. We develop software systems built around your actual processes, from internal tools to complete business applications.
 
 ## What We Offer

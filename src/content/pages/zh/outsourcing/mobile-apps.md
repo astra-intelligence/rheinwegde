@@ -3,6 +3,8 @@ title: 移动应用
 order: 3
 ---
 
+![插图：两部手机上的移动应用](/images/outsourcing/mobile-apps.svg)
+
 您的客户和员工每天大量时间都在使用手机。我们开发移动应用，把您的服务或内部流程带到 iOS 和 Android 上。
 
 ## 服务内容
