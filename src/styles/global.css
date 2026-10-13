@@ -4,6 +4,7 @@
   .content h2 { @apply mt-8 text-xl font-semibold; }
   .content h3 { @apply mt-6 text-lg font-semibold; }
   .content ul { @apply list-disc pl-6; }
+  .content ol { @apply list-decimal pl-6; }
   .content img { @apply rounded-lg border border-slate-200; }
   .content a { @apply text-blue-700 underline hover:text-blue-900; }
 }
