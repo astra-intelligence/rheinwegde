@@ -44,24 +44,26 @@ const href = (l: Lang, p: string) => `/${l}/${p ? `${p}/` : ''}`;
     </main>
 
     <footer class="border-t border-slate-200 text-sm text-slate-500">
-      <div class="mx-auto flex max-w-5xl flex-wrap gap-x-6 gap-y-2 px-4 py-6">
+      <div class="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-4 py-6">
         <span>© {new Date().getFullYear()} RheinWeg</span>
-        <a href={href(lang, 'contact')} class="hover:underline">{t(lang, 'contact')}</a>
-        {legalPages.map((p) => (
-          <a href={href(lang, p)} class="hover:underline">{t(lang, `nav.${p}`)}</a>
-        ))}
-        <button
-          type="button"
-          data-lang-open
-          aria-haspopup="dialog"
-          class="ml-auto inline-flex items-center gap-1.5 rounded px-2 text-slate-900 hover:bg-slate-100"
-        >
-          <svg aria-hidden="true" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" />
-          </svg>
-          <span class="sr-only">{t(lang, 'lang.label')} </span>
-          <span lang={lang}>{languages[lang]}</span>
-        </button>
+        <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
+          <a href={href(lang, 'contact')} class="hover:underline">{t(lang, 'contact')}</a>
+          {legalPages.map((p) => (
+            <a href={href(lang, p)} class="hover:underline">{t(lang, `nav.${p}`)}</a>
+          ))}
+          <button
+            type="button"
+            data-lang-open
+            aria-haspopup="dialog"
+            class="inline-flex items-center gap-1.5 rounded px-2 text-slate-900 hover:bg-slate-100"
+          >
+            <svg aria-hidden="true" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" />
+            </svg>
+            <span class="sr-only">{t(lang, 'lang.label')} </span>
+            <span lang={lang}>{languages[lang]}</span>
+          </button>
+        </div>
       </div>
     </footer>
 
