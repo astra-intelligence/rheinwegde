@@ -1,5 +1,5 @@
 ---
-title: "KI: Eigenes LLM aufbauen"
+title: Eigenes LLM aufbauen
 description: "2-tägiger Praxisvortrag: ein kleines Sprachmodell von Grund auf trainieren, ein Open-Source-Modell feinabstimmen, bewerten und lokal betreiben."
 order: 3
 ---
