@@ -1,5 +1,5 @@
 ---
-title: "AI: Build Your Own LLM"
+title: Build Your Own LLM
 description: "2-day hands-on lecture: train a small language model from scratch, fine-tune an open-source model, evaluate it and run it locally."
 order: 3
 ---
