@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { languages, sections, legalPages, t, type Lang } from '../i18n/ui';
+import { languages, languageNamesEn, sections, legalPages, t, type Lang } from '../i18n/ui';
 
 interface Props {
   lang: Lang;
@@ -36,18 +36,6 @@ const href = (l: Lang, p: string) => `/${l}/${p ? `${p}/` : ''}`;
           ))}
           <li><a href={href(lang, 'contact')} class="hover:underline">{t(lang, 'contact')}</a></li>
         </ul>
-        <ul class="ml-auto flex gap-3 text-sm">
-          {Object.entries(languages).map(([l, label]) => (
-            <li>
-              <a
-                href={href(l as Lang, path)}
-                hreflang={l}
-                aria-current={l === lang ? 'true' : undefined}
-                class={l === lang ? 'font-semibold' : 'text-slate-500 hover:underline'}
-              >{label}</a>
-            </li>
-          ))}
-        </ul>
       </nav>
     </header>
 
@@ -62,7 +50,61 @@ const href = (l: Lang, p: string) => `/${l}/${p ? `${p}/` : ''}`;
         {legalPages.map((p) => (
           <a href={href(lang, p)} class="hover:underline">{t(lang, `nav.${p}`)}</a>
         ))}
+        <button
+          type="button"
+          data-lang-open
+          aria-haspopup="dialog"
+          class="ml-auto inline-flex items-center gap-1.5 rounded px-2 text-slate-900 hover:bg-slate-100"
+        >
+          <svg aria-hidden="true" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" />
+          </svg>
+          <span class="sr-only">{t(lang, 'lang.label')} </span>
+          <span lang={lang}>{languages[lang]}</span>
+        </button>
       </div>
     </footer>
+
+    <dialog
+      id="lang-dialog"
+      aria-labelledby="lang-dialog-title"
+      class="m-auto w-[min(24rem,calc(100vw-2rem))] rounded-xl border border-slate-200 p-0 text-slate-900 shadow-xl backdrop:bg-slate-900/30"
+    >
+      <div class="flex items-center justify-between px-5 pt-5 pb-3">
+        <h2 id="lang-dialog-title" class="text-lg font-semibold">{t(lang, 'lang.title')}</h2>
+        <button type="button" data-lang-close aria-label={t(lang, 'lang.close')} class="rounded p-1 text-slate-500 hover:bg-slate-100 hover:text-slate-900">
+          <svg aria-hidden="true" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
+        </button>
+      </div>
+      <ul class="px-2 pb-2">
+        {Object.entries(languages).map(([l, label]) => (
+          <li>
+            <a
+              href={href(l as Lang, path)}
+              hreflang={l}
+              lang={l}
+              aria-current={l === lang ? 'true' : undefined}
+              class="flex items-center justify-between rounded-lg px-3 py-2 hover:bg-slate-100 aria-[current]:bg-slate-50"
+            >
+              <span class="flex flex-col">
+                <span>{label}</span>
+                <span lang="en" class="text-sm text-slate-500">{languageNamesEn[l as Lang]}</span>
+              </span>
+              {l === lang && (
+                <svg aria-hidden="true" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7" /></svg>
+              )}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </dialog>
+
+    <script>
+      const dialog = document.getElementById('lang-dialog') as HTMLDialogElement;
+      document.querySelector('[data-lang-open]')?.addEventListener('click', () => dialog.showModal());
+      dialog.querySelector('[data-lang-close]')?.addEventListener('click', () => dialog.close());
+      // Close when clicking the backdrop (outside the dialog box).
+      dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
+    </script>
   </body>
 </html>

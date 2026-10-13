@@ -1,5 +1,7 @@
 export const languages = { de: 'Deutsch', en: 'English', zh: '中文' } as const;
 export type Lang = keyof typeof languages;
+// English names shown under the native name in the language picker.
+export const languageNamesEn: Record<Lang, string> = { de: 'German', en: 'English', zh: 'Chinese' };
 export const defaultLang: Lang = 'de';
 
 // Sections shown in the main navigation, in order. Slugs match the Markdown file names.
@@ -36,6 +38,9 @@ export const ui = {
     'contact.email': 'E-Mail',
     'contact.phone': 'Telefon',
     'contact.country': 'Deutschland',
+    'lang.label': 'Sprache',
+    'lang.title': 'Sprache wählen',
+    'lang.close': 'Schließen',
   },
   en: {
     'nav.solutions': 'German-China Trade',
@@ -54,6 +59,9 @@ export const ui = {
     'contact.email': 'Email',
     'contact.phone': 'Phone',
     'contact.country': 'Germany',
+    'lang.label': 'Language',
+    'lang.title': 'Choose your language',
+    'lang.close': 'Close',
   },
   zh: {
     'nav.solutions': '中德贸易',
@@ -72,6 +80,9 @@ export const ui = {
     'contact.email': '邮箱',
     'contact.phone': '电话',
     'contact.country': '德国',
+    'lang.label': '语言',
+    'lang.title': '选择语言',
+    'lang.close': '关闭',
   },
 } as const;
 
