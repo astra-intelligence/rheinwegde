@@ -25,9 +25,16 @@ const staffLines = [-2, -1, 0, 1, 2].map((i) => {
   const pts = Array.from({ length: 43 }, (_, k) => -10 + k * 10);
   return pts.map((x, k) => `${k ? 'L' : 'M'}${x} ${(wave(x) + i * GAP).toFixed(1)}`).join(' ');
 });
-// pos: half-steps above the middle line (+4 = top line, -4 = bottom line).
-const note = (x: number, pos: number) => ({ x, y: wave(x) - pos * (GAP / 2) });
-const notes = [note(70, 1), note(125, 3), note(150, 2), note(215, -1), note(270, 4), note(295, 2), note(345, 0)];
+// pos: half-steps above the middle line (+4 = top line, -4 = bottom line); beats: 1 = quarter.
+// Pitch assumes a treble clef, so the middle line is B4.
+const freq = (pos: number) => {
+  const idx = 6 + pos; // B is the 7th letter of C D E F G A B
+  const midi = 12 * (5 + Math.floor(idx / 7)) + [0, 2, 4, 5, 7, 9, 11][((idx % 7) + 7) % 7];
+  return 440 * 2 ** ((midi - 69) / 12);
+};
+const note = (x: number, pos: number, beats = 1) => ({ x, y: wave(x) - pos * (GAP / 2), hz: freq(pos), beats });
+const notes = [note(70, 1), note(125, 3, 0.5), note(150, 2, 0.5), note(215, -1), note(270, 4, 0.5), note(295, 2, 0.5), note(345, 0)];
+const melody = JSON.stringify(notes.map((n) => [Math.round(n.hz * 100) / 100, n.beats]));
 const beams = [[notes[1], notes[2]], [notes[4], notes[5]]] as const;
 
 // Outline icon per section (24x24, stroke).
@@ -62,14 +69,14 @@ const icons: Record<(typeof sections)[number], string> = {
       </div>
 
       <!-- Visual: the Rhine as a five-line staff with notes, linking DE and CN -->
-      <div aria-hidden="true" class="relative aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br from-brand-900 via-brand-700 to-brand-500 shadow-xl">
-        <svg class="absolute inset-0 h-full w-full" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+      <div class="relative aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br from-brand-900 via-brand-700 to-brand-500 shadow-xl">
+        <svg aria-hidden="true" class="absolute inset-0 h-full w-full" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
           {staffLines.map((d) => (
             <path d={d} fill="none" stroke="white" stroke-opacity="0.45" stroke-width="1.5" />
           ))}
           <g fill="white" stroke="white">
             {notes.map((n) => (
-              <g>
+              <g data-note class="origin-center transition-opacity duration-150 [transform-box:fill-box]">
                 <ellipse cx={n.x} cy={n.y} rx="6.5" ry="4.6" transform={`rotate(-20 ${n.x} ${n.y})`} stroke="none" />
                 <line x1={n.x + 6} y1={n.y - 1} x2={n.x + 6} y2={n.y - STEM} stroke-width="1.6" />
               </g>
@@ -79,11 +86,19 @@ const icons: Record<(typeof sections)[number], string> = {
             ))}
           </g>
         </svg>
-        <div class="absolute top-6 left-6 rounded-lg bg-white/10 px-3 py-2 text-sm font-semibold text-white ring-1 ring-white/20 backdrop-blur">DE</div>
-        <div class="absolute top-6 right-6 rounded-lg bg-white/10 px-3 py-2 text-sm font-semibold text-white ring-1 ring-white/20 backdrop-blur">CN</div>
-        <div class="absolute inset-x-6 bottom-6 text-center">
-          <p class="text-xl font-semibold tracking-tight text-white/95">Deutsch · English · 中文</p>
-        </div>
+        <div aria-hidden="true" class="absolute top-6 left-6 rounded-lg bg-white/10 px-3 py-2 text-sm font-semibold text-white ring-1 ring-white/20 backdrop-blur">DE</div>
+        <div aria-hidden="true" class="absolute top-6 right-6 rounded-lg bg-white/10 px-3 py-2 text-sm font-semibold text-white ring-1 ring-white/20 backdrop-blur">CN</div>
+        <p aria-hidden="true" class="absolute bottom-7 left-6 text-xl font-semibold tracking-tight text-white/95">Deutsch · English · 中文</p>
+        <button
+          type="button"
+          id="play-melody"
+          data-melody={melody}
+          aria-label={t(lang, 'home.play')}
+          title={t(lang, 'home.play')}
+          class="absolute right-6 bottom-6 flex h-11 w-11 items-center justify-center rounded-full bg-white text-brand-700 shadow-lg ring-1 ring-white/40 transition hover:scale-105"
+        >
+          <svg aria-hidden="true" class="ml-0.5 h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z" /></svg>
+        </button>
       </div>
     </div>
   </section>
@@ -166,4 +181,42 @@ const icons: Record<(typeof sections)[number], string> = {
       <a href={href('contact')} class="shrink-0 rounded-lg bg-white px-5 py-3 font-medium text-brand-900 hover:bg-brand-50">{t(lang, 'home.cta.primary')}</a>
     </div>
   </section>
+
+  <script>
+    // Play the hero staff with Web Audio; each note lights up while it sounds. Starts on click only.
+    const button = document.getElementById('play-melody') as HTMLButtonElement;
+    const heads = [...document.querySelectorAll<SVGGElement>('[data-note]')];
+    const melody: [number, number][] = JSON.parse(button.dataset.melody!);
+    let ctx: AudioContext | undefined;
+    let playing = false;
+
+    button.addEventListener('click', () => {
+      if (playing) return;
+      playing = true;
+      ctx ??= new AudioContext();
+      const beat = 0.42; // seconds per quarter note
+      let t = ctx.currentTime + 0.05;
+      heads.forEach((h) => (h.style.opacity = '0.35'));
+      melody.forEach(([hz, beats], i) => {
+        const len = beats * beat;
+        const osc = ctx!.createOscillator();
+        const gain = ctx!.createGain();
+        osc.type = 'triangle';
+        osc.frequency.value = hz;
+        gain.gain.setValueAtTime(0, t);
+        gain.gain.linearRampToValueAtTime(0.3, t + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.001, t + len * 0.95);
+        osc.connect(gain).connect(ctx!.destination);
+        osc.start(t);
+        osc.stop(t + len);
+        const delay = (t - ctx!.currentTime) * 1000;
+        setTimeout(() => (heads[i].style.opacity = '1'), delay);
+        t += len;
+      });
+      setTimeout(() => {
+        heads.forEach((h) => (h.style.opacity = ''));
+        playing = false;
+      }, (t - ctx.currentTime) * 1000 + 200);
+    });
+  </script>
 </Base>
