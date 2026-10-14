@@ -17,6 +17,19 @@ const workshops = (await getCollection('pages'))
   .slice(0, 3)
   .map((p) => ({ ...p, slug: p.id.split('/').pop() }));
 
+// Hero staff: five parallel wavy lines (the Rhine) with notes sitting on lines and spaces.
+const GAP = 12; // distance between staff lines
+const STEM = 30;
+const wave = (x: number) => 155 + 26 * Math.sin((x / 400) * 2 * Math.PI + 0.6);
+const staffLines = [-2, -1, 0, 1, 2].map((i) => {
+  const pts = Array.from({ length: 43 }, (_, k) => -10 + k * 10);
+  return pts.map((x, k) => `${k ? 'L' : 'M'}${x} ${(wave(x) + i * GAP).toFixed(1)}`).join(' ');
+});
+// pos: half-steps above the middle line (+4 = top line, -4 = bottom line).
+const note = (x: number, pos: number) => ({ x, y: wave(x) - pos * (GAP / 2) });
+const notes = [note(70, 1), note(125, 3), note(150, 2), note(215, -1), note(270, 4), note(295, 2), note(345, 0)];
+const beams = [[notes[1], notes[2]], [notes[4], notes[5]]] as const;
+
 // Outline icon per section (24x24, stroke).
 const icons: Record<(typeof sections)[number], string> = {
   solutions: 'M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18',
@@ -48,23 +61,28 @@ const icons: Record<(typeof sections)[number], string> = {
         </div>
       </div>
 
-      <!-- Visual: the Rhine as a line linking DE and CN -->
+      <!-- Visual: the Rhine as a five-line staff with notes, linking DE and CN -->
       <div aria-hidden="true" class="relative aspect-[4/3] overflow-hidden rounded-2xl bg-gradient-to-br from-brand-900 via-brand-700 to-brand-500 shadow-xl">
-        <svg class="absolute inset-0 h-full w-full" viewBox="0 0 400 300" preserveAspectRatio="none">
-          {[0, 1, 2, 3, 4, 5].map((i) => (
-            <path
-              d={`M-10 ${190 + i * 14} C 90 ${110 + i * 14}, 170 ${270 + i * 10}, 260 ${170 + i * 12} S 380 ${120 + i * 14}, 420 ${140 + i * 12}`}
-              fill="none"
-              stroke="white"
-              stroke-opacity={0.08 + i * 0.05}
-              stroke-width="1.5"
-            />
+        <svg class="absolute inset-0 h-full w-full" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+          {staffLines.map((d) => (
+            <path d={d} fill="none" stroke="white" stroke-opacity="0.45" stroke-width="1.5" />
           ))}
+          <g fill="white" stroke="white">
+            {notes.map((n) => (
+              <g>
+                <ellipse cx={n.x} cy={n.y} rx="6.5" ry="4.6" transform={`rotate(-20 ${n.x} ${n.y})`} stroke="none" />
+                <line x1={n.x + 6} y1={n.y - 1} x2={n.x + 6} y2={n.y - STEM} stroke-width="1.6" />
+              </g>
+            ))}
+            {beams.map(([a, b]) => (
+              <path d={`M${a.x + 6} ${a.y - STEM} L${b.x + 6} ${b.y - STEM} L${b.x + 6} ${b.y - STEM + 5} L${a.x + 6} ${a.y - STEM + 5} Z`} stroke="none" />
+            ))}
+          </g>
         </svg>
         <div class="absolute top-6 left-6 rounded-lg bg-white/10 px-3 py-2 text-sm font-semibold text-white ring-1 ring-white/20 backdrop-blur">DE</div>
-        <div class="absolute right-6 bottom-6 rounded-lg bg-white/10 px-3 py-2 text-sm font-semibold text-white ring-1 ring-white/20 backdrop-blur">CN</div>
-        <div class="absolute inset-x-6 top-1/2 -translate-y-1/2 text-center">
-          <p class="text-2xl font-semibold tracking-tight text-white/95">Deutsch · English · 中文</p>
+        <div class="absolute top-6 right-6 rounded-lg bg-white/10 px-3 py-2 text-sm font-semibold text-white ring-1 ring-white/20 backdrop-blur">CN</div>
+        <div class="absolute inset-x-6 bottom-6 text-center">
+          <p class="text-xl font-semibold tracking-tight text-white/95">Deutsch · English · 中文</p>
         </div>
       </div>
     </div>
