@@ -155,21 +155,34 @@ const icons: Record<(typeof sections)[number], string> = {
         </svg>
         <div aria-hidden="true" class="absolute top-6 left-6 rounded-lg bg-white/10 px-3 py-2 text-sm font-semibold text-white ring-1 ring-white/20 backdrop-blur">DE</div>
         <div aria-hidden="true" class="absolute top-6 right-6 rounded-lg bg-white/10 px-3 py-2 text-sm font-semibold text-white ring-1 ring-white/20 backdrop-blur">CN</div>
-        <label class="absolute bottom-6 left-6 flex h-11 items-center gap-2.5 rounded-full bg-white/10 px-4 text-white ring-1 ring-white/20 backdrop-blur" title={t(lang, 'home.volume')}>
-          <svg aria-hidden="true" class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H3v6h3l5 4V5zM15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13" /></svg>
-          <input id="melody-volume" type="range" min="0" max="1" step="0.05" value="0.8" aria-label={t(lang, 'home.volume')} class="h-1 w-28 cursor-pointer accent-white" />
-        </label>
+        <!-- The whole card starts the music; the controls appear once it has played. -->
         <button
           type="button"
-          id="play-melody"
+          id="melody-start"
           data-melody={melody}
           data-chords={chords}
           data-style={song.style}
           aria-label={playLabel}
           title={playLabel}
-          class="absolute right-6 bottom-6 flex h-11 w-11 items-center justify-center rounded-full bg-white text-brand-700 shadow-lg ring-1 ring-white/40 transition hover:scale-105"
+          class="absolute inset-0 cursor-pointer rounded-2xl transition hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-inset"
+        ></button>
+        <label data-melody-control class="invisible absolute bottom-6 left-6 flex h-11 items-center gap-2.5 rounded-full bg-white/10 px-4 text-white opacity-0 ring-1 ring-white/20 backdrop-blur transition-opacity duration-500" title={t(lang, 'home.volume')}>
+          <svg aria-hidden="true" class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H3v6h3l5 4V5zM15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13" /></svg>
+          <input id="melody-volume" type="range" min="0" max="1" step="0.05" value="0.8" aria-label={t(lang, 'home.volume')} class="h-1 w-28 cursor-pointer accent-white" />
+        </label>
+        <!-- Stop while playing, replay afterwards. -->
+        <button
+          type="button"
+          id="melody-toggle"
+          data-melody-control
+          data-play-label={playLabel}
+          data-stop-label={t(lang, 'home.stop')}
+          aria-label={t(lang, 'home.stop')}
+          title={t(lang, 'home.stop')}
+          class="invisible absolute right-6 bottom-6 flex h-11 w-11 items-center justify-center rounded-full bg-white text-brand-700 opacity-0 shadow-lg ring-1 ring-white/40 transition hover:scale-105"
         >
-          <svg aria-hidden="true" class="ml-0.5 h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z" /></svg>
+          <svg aria-hidden="true" data-icon="play" class="ml-0.5 hidden h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z" /></svg>
+          <svg aria-hidden="true" data-icon="stop" class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><rect x="5" y="5" width="14" height="14" rx="2" /></svg>
         </button>
       </div>
     </div>
@@ -259,17 +272,48 @@ const icons: Record<(typeof sections)[number], string> = {
     // see public/audio/CREDITS.txt): a small orchestra (de, en) or koto and shakuhachi standing in
     // for guqin and xiao (zh). The music fades out from the last note on. Each note lights up while
     // it sounds. Samples load on the first click.
-    const button = document.getElementById('play-melody') as HTMLButtonElement;
+    const card = document.getElementById('melody-start') as HTMLButtonElement;
+    const toggle = document.getElementById('melody-toggle') as HTMLButtonElement;
+    const controls = [...document.querySelectorAll<HTMLElement>('[data-melody-control]')];
     const heads = [...document.querySelectorAll<SVGGElement>('[data-note]')];
-    const melody: [string, number][] = JSON.parse(button.dataset.melody!);
-    const chords: [string[], number][] = JSON.parse(button.dataset.chords!);
-    const guqin = button.dataset.style === 'guqin';
+    const melody: [string, number][] = JSON.parse(card.dataset.melody!);
+    const chords: [string[], number][] = JSON.parse(card.dataset.chords!);
+    const guqin = card.dataset.style === 'guqin';
     const FADE = 4; // seconds from the last note's onset to silence
     let ctx: AudioContext | undefined;
     let volume: GainNode | undefined; // listener's volume, kept across plays and changeable while playing
     let reverb: AudioBuffer | undefined;
     const samples = new Map<string, Promise<AudioBuffer>>();
     let playing = false;
+    let run = 0; // bumped by every play and stop, so a stale play stops scheduling
+    let master: GainNode | undefined;
+    let timers: number[] = [];
+
+    // Toggle shows stop while playing, play (replay) otherwise.
+    const setPlaying = (on: boolean) => {
+      playing = on;
+      const label = on ? toggle.dataset.stopLabel! : toggle.dataset.playLabel!;
+      toggle.setAttribute('aria-label', label);
+      toggle.title = label;
+      toggle.querySelector('[data-icon="play"]')!.classList.toggle('hidden', on);
+      toggle.querySelector('[data-icon="stop"]')!.classList.toggle('hidden', !on);
+    };
+    const finish = () => {
+      timers.forEach(clearTimeout);
+      timers = [];
+      heads.forEach((h) => (h.style.opacity = ''));
+      setPlaying(false);
+    };
+    const stop = () => {
+      run++;
+      if (master && ctx) {
+        const now = ctx.currentTime;
+        master.gain.cancelScheduledValues(now);
+        master.gain.setValueAtTime(master.gain.value, now);
+        master.gain.linearRampToValueAtTime(0, now + 0.3);
+      }
+      finish();
+    };
 
     // Volume slider, remembered per browser.
     const slider = document.getElementById('melody-volume') as HTMLInputElement;
@@ -343,9 +387,11 @@ const icons: Record<(typeof sections)[number], string> = {
       return { voices, onsets, fadeAt, end };
     };
 
-    button.addEventListener('click', async () => {
+    const play = async () => {
       if (playing) return;
-      playing = true;
+      setPlaying(true);
+      const id = ++run;
+      controls.forEach((c) => c.classList.remove('invisible', 'opacity-0'));
       if (!ctx) {
         ctx = new AudioContext();
         volume = ctx.createGain();
@@ -356,21 +402,22 @@ const icons: Record<(typeof sections)[number], string> = {
       const ac = ctx;
       const { voices, onsets, fadeAt, end } = arrange(guqin ? 0.66 : 0.55); // seconds per quarter note
       const buffers = await Promise.all(voices.map((v) => load(ac, `${v.inst}/${v.note}`)));
+      if (id !== run) return; // stopped while loading
       const start = ac.currentTime + 0.05;
 
       // Signal chain: voices -> master (fade) -> dry + hall reverb -> compressor -> volume -> speakers.
-      const master = ac.createGain();
+      const bus = (master = ac.createGain());
       const lift = guqin ? 4 : 2.5; // samples are quiet; match the three songs' loudness
-      master.gain.value = lift;
-      master.gain.setValueAtTime(lift, start + fadeAt);
-      master.gain.exponentialRampToValueAtTime(0.0001, start + end);
+      bus.gain.value = lift;
+      bus.gain.setValueAtTime(lift, start + fadeAt);
+      bus.gain.exponentialRampToValueAtTime(0.0001, start + end);
       const comp = ac.createDynamicsCompressor();
       const hall = ac.createConvolver();
       hall.buffer = reverb;
       const wet = ac.createGain();
       wet.gain.value = guqin ? 0.6 : 0.3;
-      master.connect(comp);
-      master.connect(hall).connect(wet).connect(comp);
+      bus.connect(comp);
+      bus.connect(hall).connect(wet).connect(comp);
       comp.connect(volume!);
 
       voices.forEach((v, i) => {
@@ -387,17 +434,17 @@ const icons: Record<(typeof sections)[number], string> = {
           lowpass.frequency.value = v.cutoff;
           src.connect(lowpass).connect(env);
         } else src.connect(env);
-        env.connect(master);
+        env.connect(bus);
         src.start(t);
         src.stop(t + v.len + v.release);
       });
 
       heads.forEach((h) => (h.style.opacity = '0.35'));
-      onsets.forEach((o, i) => setTimeout(() => (heads[i].style.opacity = '1'), (start + o - ac.currentTime) * 1000));
-      setTimeout(() => {
-        heads.forEach((h) => (h.style.opacity = ''));
-        playing = false;
-      }, (start + end - ac.currentTime) * 1000 + 200);
-    });
+      timers = onsets.map((o, i) => window.setTimeout(() => (heads[i].style.opacity = '1'), (start + o - ac.currentTime) * 1000));
+      timers.push(window.setTimeout(finish, (start + end - ac.currentTime) * 1000 + 200));
+    };
+
+    card.addEventListener('click', play);
+    toggle.addEventListener('click', () => (playing ? stop() : play()));
   </script>
 </Base>
