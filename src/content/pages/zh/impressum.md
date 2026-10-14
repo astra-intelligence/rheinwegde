@@ -32,3 +32,7 @@ Liying Zhu，地址同上
 ## 链接责任
 
 本网站包含指向第三方外部网站的链接，我们无法影响这些网站的内容。链接页面的内容始终由其提供者或运营者负责。一旦得知存在违法内容，我们会立即删除相关链接。
+
+## 音频来源
+
+首页旋律的乐器音色取自 Frank Wen 制作的 Fluid R3 GM 音色库，由 [gleitz/midi-js-soundfonts](https://github.com/gleitz/midi-js-soundfonts) 整理，采用 [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) 许可。旋律为首页重新编配并截短。
