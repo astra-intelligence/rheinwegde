@@ -16,7 +16,7 @@ Wir recherchieren chinesische Unternehmen gemäß Ihren Anforderungen, beispiels
 
 Bitte teilen Sie uns Ihre Filterkriterien, die gewünschte Sortierung und die Anzahl der Unternehmen mit, die Sie suchen möchten.
 
-Auf Basis Ihrer Kriterien erstellen wir einen Bericht aus der chinesischen Unternehmensdatenbank. Der Bericht enthält u. a. folgende Informationen zu den passenden Unternehmen (siehe Beispiel: [RheinWeg-Beispiel-Liste-22-02-2026.xlsx](/downloads/RheinWeg-Beispiel-Liste-22-02-2026.xlsx)):
+Auf Basis Ihrer Kriterien erstellen wir einen Bericht aus der chinesischen Unternehmensdatenbank. Der Bericht enthält u. a. folgende Informationen zu den passenden Unternehmen (siehe Beispiel: [RheinWeg-Beispiel-Liste-14-10-2026.xlsx](/downloads/RheinWeg-Beispiel-Liste-14-10-2026.xlsx)):
 
 Firmenname, Geschäftsstatus, Einheitlicher Sozialkreditcode, Registrierungsnummer, Provinz, Stadt, Bezirk/Landkreis, Gesetzlicher Vertreter, Stammkapital, Eingezahltes Kapital, Gründungsdatum, Genehmigungsdatum, Frühere Firmennamen, Branche, Unternehmensart, Organisationscode, Anzahl der sozialversicherungspflichtigen Mitarbeiter, Geschäftsumfang, Geschäftsadresse, Letzte bekannte Adresse, E-Mail-Adresse (Geschäftsinformationen), E-Mail-Adresse (Verifizierungsinformationen), Gesellschafter, Kontakttelefonnummern (laut Handelsregister, nach Aktualität sortiert), Weitere Kontaktnummern (2–10), Empfohlene Telefonnummer.
 

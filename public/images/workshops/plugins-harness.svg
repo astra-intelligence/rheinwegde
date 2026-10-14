@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 360" role="img">
-  <defs><g id="robot"><rect x="-6" y="-46" width="12" height="12" rx="6" fill="#2563eb"/><rect x="-2" y="-36" width="4" height="10" fill="#0f172a"/><rect x="-34" y="-28" width="68" height="56" rx="16" fill="#0f172a"/><rect x="-24" y="-16" width="48" height="26" rx="10" fill="#1e293b"/><circle cx="-11" cy="-3" r="5" fill="#60a5fa"/><circle cx="11" cy="-3" r="5" fill="#60a5fa"/><rect x="-10" y="16" width="20" height="4" rx="2" fill="#60a5fa"/></g></defs>
+  <defs><g id="robot"><rect x="-6" y="-46" width="12" height="12" rx="6" fill="#1d6a9e"/><rect x="-2" y="-36" width="4" height="10" fill="#0f172a"/><rect x="-34" y="-28" width="68" height="56" rx="16" fill="#0f172a"/><rect x="-24" y="-16" width="48" height="26" rx="10" fill="#1e293b"/><circle cx="-11" cy="-3" r="5" fill="#589bc9"/><circle cx="11" cy="-3" r="5" fill="#589bc9"/><rect x="-10" y="16" width="20" height="4" rx="2" fill="#589bc9"/></g></defs>
   <rect width="800" height="360" fill="#f1f5f9"/>
-  <circle cx="400" cy="180" r="140" fill="#dbeafe"/>
-  <circle cx="80" cy="60" r="60" fill="#e0e7ff"/><circle cx="720" cy="300" r="60" fill="#e0e7ff"/>
+  <circle cx="400" cy="180" r="140" fill="#d8e9f5"/>
+  <circle cx="80" cy="60" r="60" fill="#d8e9f5"/><circle cx="720" cy="300" r="60" fill="#d8e9f5"/>
   <!-- harness: central frame with sockets -->
   <rect x="300" y="90" width="200" height="180" rx="18" fill="#0f172a"/>
   <circle cx="400" cy="180" r="56" fill="#fff"/>
@@ -10,9 +10,9 @@
   <g fill="#f1f5f9"><rect x="292" y="120" width="16" height="30" rx="4"/><rect x="292" y="210" width="16" height="30" rx="4"/><rect x="492" y="120" width="16" height="30" rx="4"/><rect x="492" y="210" width="16" height="30" rx="4"/><rect x="385" y="82" width="30" height="16" rx="4"/></g>
   <!-- plugins -->
   <g>
-    <rect x="130" y="105" width="110" height="60" rx="10" fill="#2563eb"/><rect x="240" y="125" width="44" height="20" rx="4" fill="#2563eb"/>
+    <rect x="130" y="105" width="110" height="60" rx="10" fill="#1d6a9e"/><rect x="240" y="125" width="44" height="20" rx="4" fill="#1d6a9e"/>
     <g fill="#0f172a"><rect x="284" y="128" width="12" height="4" rx="2"/><rect x="284" y="138" width="12" height="4" rx="2"/></g>
-    <rect x="148" y="122" width="56" height="8" rx="4" fill="#fff"/><rect x="148" y="138" width="40" height="8" rx="4" fill="#bfdbfe"/>
+    <rect x="148" y="122" width="56" height="8" rx="4" fill="#fff"/><rect x="148" y="138" width="40" height="8" rx="4" fill="#b3d3ea"/>
   </g>
   <g>
     <rect x="130" y="195" width="110" height="60" rx="10" fill="#fff" stroke="#0f172a" stroke-width="3"/><rect x="240" y="215" width="44" height="20" rx="4" fill="#0f172a"/>
@@ -26,10 +26,10 @@
   </g>
   <!-- model plugin, being plugged in -->
   <g transform="translate(40 0)">
-    <rect x="560" y="195" width="110" height="60" rx="10" fill="#2563eb"/><rect x="516" y="215" width="44" height="20" rx="4" fill="#2563eb"/>
+    <rect x="560" y="195" width="110" height="60" rx="10" fill="#1d6a9e"/><rect x="516" y="215" width="44" height="20" rx="4" fill="#1d6a9e"/>
     <g fill="#0f172a"><rect x="504" y="218" width="12" height="4" rx="2"/><rect x="504" y="228" width="12" height="4" rx="2"/></g>
     <g transform="translate(615 225)" stroke="#fff" stroke-width="2"><circle cx="-18" cy="-10" r="5" fill="#fff"/><circle cx="18" cy="-10" r="5" fill="#fff"/><circle cx="0" cy="12" r="5" fill="#fff"/><path d="M-13 -10 h26 M-15 -6 l12 14 M15 -6 l-12 14"/></g>
   </g>
-  <path d="M400 60 v14 m-8 -6 l8 8 l8 -8" stroke="#2563eb" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M400 60 v14 m-8 -6 l8 8 l8 -8" stroke="#1d6a9e" stroke-width="3" fill="none" stroke-linecap="round"/>
   <rect x="380" y="30" width="40" height="26" rx="6" fill="#facc15" stroke="#0f172a" stroke-width="2"/>
 </svg>

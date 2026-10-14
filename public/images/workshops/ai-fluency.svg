@@ -1,15 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 360" role="img">
-  <defs><g id="robot"><rect x="-6" y="-46" width="12" height="12" rx="6" fill="#2563eb"/><rect x="-2" y="-36" width="4" height="10" fill="#0f172a"/><rect x="-34" y="-28" width="68" height="56" rx="16" fill="#0f172a"/><rect x="-24" y="-16" width="48" height="26" rx="10" fill="#1e293b"/><circle cx="-11" cy="-3" r="5" fill="#60a5fa"/><circle cx="11" cy="-3" r="5" fill="#60a5fa"/><rect x="-10" y="16" width="20" height="4" rx="2" fill="#60a5fa"/></g></defs>
+  <defs><g id="robot"><rect x="-6" y="-46" width="12" height="12" rx="6" fill="#1d6a9e"/><rect x="-2" y="-36" width="4" height="10" fill="#0f172a"/><rect x="-34" y="-28" width="68" height="56" rx="16" fill="#0f172a"/><rect x="-24" y="-16" width="48" height="26" rx="10" fill="#1e293b"/><circle cx="-11" cy="-3" r="5" fill="#589bc9"/><circle cx="11" cy="-3" r="5" fill="#589bc9"/><rect x="-10" y="16" width="20" height="4" rx="2" fill="#589bc9"/></g></defs>
   <rect width="800" height="360" fill="#f1f5f9"/>
-  <circle cx="400" cy="190" r="140" fill="#dbeafe"/>
-  <circle cx="80" cy="290" r="60" fill="#e0e7ff"/><circle cx="720" cy="70" r="60" fill="#e0e7ff"/>
+  <circle cx="400" cy="190" r="140" fill="#d8e9f5"/>
+  <circle cx="80" cy="290" r="60" fill="#d8e9f5"/><circle cx="720" cy="70" r="60" fill="#d8e9f5"/>
   <!-- laptop with chat -->
   <rect x="250" y="80" width="300" height="190" rx="12" fill="#0f172a"/>
   <rect x="262" y="92" width="276" height="166" rx="6" fill="#fff"/>
   <rect x="210" y="270" width="380" height="16" rx="8" fill="#334155"/>
   <rect x="360" y="270" width="80" height="6" rx="3" fill="#1e293b"/>
   <rect x="282" y="108" width="150" height="34" rx="12" fill="#f1f5f9"/><rect x="296" y="120" width="110" height="8" rx="4" fill="#94a3b8"/>
-  <rect x="370" y="152" width="150" height="50" rx="12" fill="#2563eb"/><rect x="384" y="164" width="120" height="7" rx="3" fill="#fff"/><rect x="384" y="178" width="96" height="7" rx="3" fill="#bfdbfe"/>
+  <rect x="370" y="152" width="150" height="50" rx="12" fill="#1d6a9e"/><rect x="384" y="164" width="120" height="7" rx="3" fill="#fff"/><rect x="384" y="178" width="96" height="7" rx="3" fill="#b3d3ea"/>
   <rect x="282" y="212" width="236" height="30" rx="15" fill="#fff" stroke="#cbd5e1" stroke-width="2"/><circle cx="502" cy="227" r="9" fill="#0f172a"/>
   <!-- lightbulb (effective) -->
   <g transform="translate(130 120)">
@@ -21,13 +21,13 @@
   <g transform="translate(130 250)">
     <circle r="26" fill="#fff" stroke="#0f172a" stroke-width="5"/>
     <path d="M18 18 l22 22" stroke="#0f172a" stroke-width="8" stroke-linecap="round"/>
-    <path d="M-10 0 l6 6 l12 -12" stroke="#2563eb" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M-10 0 l6 6 l12 -12" stroke="#1d6a9e" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
   </g>
   <!-- shield (safe) -->
   <g transform="translate(670 200)">
-    <path d="M0 -60 l50 18 v34 c0 36 -24 58 -50 70 c-26 -12 -50 -34 -50 -70 v-34z" fill="#2563eb" stroke="#0f172a" stroke-width="3"/>
+    <path d="M0 -60 l50 18 v34 c0 36 -24 58 -50 70 c-26 -12 -50 -34 -50 -70 v-34z" fill="#1d6a9e" stroke="#0f172a" stroke-width="3"/>
     <path d="M-18 2 l12 12 l26 -26" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
   </g>
   <!-- sparkles -->
-  <g fill="#2563eb"><path d="M600 60 l5 14 l14 5 l-14 5 l-5 14 l-5 -14 l-14 -5 l14 -5z"/><path d="M230 50 l3 9 l9 3 l-9 3 l-3 9 l-3 -9 l-9 -3 l9 -3z"/></g>
+  <g fill="#1d6a9e"><path d="M600 60 l5 14 l14 5 l-14 5 l-5 14 l-5 -14 l-14 -5 l14 -5z"/><path d="M230 50 l3 9 l9 3 l-9 3 l-3 9 l-3 -9 l-9 -3 l9 -3z"/></g>
 </svg>

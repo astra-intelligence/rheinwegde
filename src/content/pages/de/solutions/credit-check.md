@@ -3,7 +3,7 @@ title: Bonitätsprüfung chinesischer Unternehmen
 order: 2
 ---
 
-Falls Sie an detaillierten Informationen und der Bonität eines bestimmten Unternehmens interessiert sind, recherchieren wir aus öffentlichen Quellen u. a. folgende Angaben (siehe Beispiel: [RheinWeg-Beispiel-Firma-22-02-2026.xlsx](/downloads/RheinWeg-Beispiel-Firma-22-02-2026.xlsx)):
+Falls Sie an detaillierten Informationen und der Bonität eines bestimmten Unternehmens interessiert sind, recherchieren wir aus öffentlichen Quellen u. a. folgende Angaben (siehe Beispiel: [RheinWeg-Beispiel-Firma-14-10-2026.xlsx](/downloads/RheinWeg-Beispiel-Firma-14-10-2026.xlsx)):
 
 - Unternehmensinformationen
 - Gesellschafterinformationen
