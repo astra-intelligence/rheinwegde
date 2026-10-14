@@ -1,0 +1,4 @@
+Instrument samples (strings, flute, contrabass, timpani, koto, shakuhachi) are single notes
+rendered from the Fluid R3 GM SoundFont by Frank Wen, as pre-rendered by
+gleitz/midi-js-soundfonts (https://github.com/gleitz/midi-js-soundfonts).
+License: Creative Commons Attribution 3.0 (https://creativecommons.org/licenses/by/3.0/).

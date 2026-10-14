@@ -30,3 +30,7 @@ Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor e
 ## Haftung für Links
 
 Diese Website enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber verantwortlich. Bei Bekanntwerden von Rechtsverletzungen entfernen wir derartige Links umgehend.
+
+## Tonnachweis
+
+Die Instrumentenklänge der Melodie auf der Startseite stammen aus der Fluid R3 GM SoundFont von Frank Wen, aufbereitet von [gleitz/midi-js-soundfonts](https://github.com/gleitz/midi-js-soundfonts), lizenziert unter [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/). Die Melodien wurden für die Startseite arrangiert und gekürzt.
