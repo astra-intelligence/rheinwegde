@@ -1,30 +1,30 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 360" role="img">
-  <defs><g id="robot"><rect x="-6" y="-46" width="12" height="12" rx="6" fill="#2563eb"/><rect x="-2" y="-36" width="4" height="10" fill="#0f172a"/><rect x="-34" y="-28" width="68" height="56" rx="16" fill="#0f172a"/><rect x="-24" y="-16" width="48" height="26" rx="10" fill="#1e293b"/><circle cx="-11" cy="-3" r="5" fill="#60a5fa"/><circle cx="11" cy="-3" r="5" fill="#60a5fa"/><rect x="-10" y="16" width="20" height="4" rx="2" fill="#60a5fa"/></g></defs>
+  <defs><g id="robot"><rect x="-6" y="-46" width="12" height="12" rx="6" fill="#1d6a9e"/><rect x="-2" y="-36" width="4" height="10" fill="#0f172a"/><rect x="-34" y="-28" width="68" height="56" rx="16" fill="#0f172a"/><rect x="-24" y="-16" width="48" height="26" rx="10" fill="#1e293b"/><circle cx="-11" cy="-3" r="5" fill="#589bc9"/><circle cx="11" cy="-3" r="5" fill="#589bc9"/><rect x="-10" y="16" width="20" height="4" rx="2" fill="#589bc9"/></g></defs>
   <rect width="800" height="360" fill="#f1f5f9"/>
-  <circle cx="400" cy="180" r="130" fill="#dbeafe"/>
-  <circle cx="80" cy="300" r="60" fill="#e0e7ff"/><circle cx="720" cy="60" r="60" fill="#e0e7ff"/>
+  <circle cx="400" cy="180" r="130" fill="#d8e9f5"/>
+  <circle cx="80" cy="300" r="60" fill="#d8e9f5"/><circle cx="720" cy="60" r="60" fill="#d8e9f5"/>
   <!-- inputs -->
   <g>
     <rect x="70" y="60" width="130" height="70" rx="10" fill="#fff" stroke="#cbd5e1" stroke-width="2"/>
-    <path d="M90 78 h50 v34 h-50z" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><path d="M90 78 l25 18 l25 -18" stroke="#2563eb" stroke-width="2" fill="none"/>
+    <path d="M90 78 h50 v34 h-50z" fill="#eff6fb" stroke="#1d6a9e" stroke-width="2"/><path d="M90 78 l25 18 l25 -18" stroke="#1d6a9e" stroke-width="2" fill="none"/>
     <rect x="152" y="86" width="34" height="6" rx="3" fill="#94a3b8"/><rect x="152" y="100" width="26" height="6" rx="3" fill="#cbd5e1"/>
     <rect x="70" y="150" width="130" height="70" rx="10" fill="#fff" stroke="#cbd5e1" stroke-width="2"/>
-    <path d="M92 168 h28 l10 10 v26 h-38z" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+    <path d="M92 168 h28 l10 10 v26 h-38z" fill="#eff6fb" stroke="#1d6a9e" stroke-width="2"/>
     <rect x="152" y="176" width="34" height="6" rx="3" fill="#94a3b8"/><rect x="152" y="190" width="26" height="6" rx="3" fill="#cbd5e1"/>
     <rect x="70" y="240" width="130" height="70" rx="10" fill="#fff" stroke="#cbd5e1" stroke-width="2"/>
-    <path d="M90 258 h44 a6 6 0 0 1 6 6 v18 a6 6 0 0 1 -6 6 h-30 l-10 8 v-8 h-4 a6 6 0 0 1 -6 -6 v-18 a6 6 0 0 1 6 -6z" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+    <path d="M90 258 h44 a6 6 0 0 1 6 6 v18 a6 6 0 0 1 -6 6 h-30 l-10 8 v-8 h-4 a6 6 0 0 1 -6 -6 v-18 a6 6 0 0 1 6 -6z" fill="#eff6fb" stroke="#1d6a9e" stroke-width="2"/>
     <rect x="152" y="266" width="34" height="6" rx="3" fill="#94a3b8"/><rect x="152" y="280" width="26" height="6" rx="3" fill="#cbd5e1"/>
   </g>
   <g stroke="#0f172a" stroke-width="3" fill="none" stroke-dasharray="6 6"><path d="M206 95 C280 95 290 180 340 180"/><path d="M206 185 H340"/><path d="M206 275 C280 275 290 180 340 180"/></g>
   <!-- agent hub -->
-  <circle cx="400" cy="180" r="62" fill="#fff" stroke="#2563eb" stroke-width="3"/>
+  <circle cx="400" cy="180" r="62" fill="#fff" stroke="#1d6a9e" stroke-width="3"/>
   <use href="#robot" x="400" y="186"/>
   <!-- lightning -->
   <path d="M458 110 l-14 26 h12 l-8 22 l22 -30 h-12 l8 -18z" fill="#facc15" stroke="#0f172a" stroke-width="2" stroke-linejoin="round"/>
-  <g stroke="#2563eb" stroke-width="3" fill="none"><path d="M462 180 C510 180 520 95 594 95"/><path d="M462 180 H594"/><path d="M462 180 C510 180 520 265 594 265"/></g>
+  <g stroke="#1d6a9e" stroke-width="3" fill="none"><path d="M462 180 C510 180 520 95 594 95"/><path d="M462 180 H594"/><path d="M462 180 C510 180 520 265 594 265"/></g>
   <!-- outputs -->
-  <rect x="600" y="60" width="130" height="70" rx="10" fill="#2563eb"/>
-  <g fill="#fff"><rect x="616" y="76" width="98" height="6" rx="3"/></g><g fill="#bfdbfe"><rect x="616" y="90" width="20" height="10" rx="2"/><rect x="642" y="90" width="20" height="10" rx="2"/><rect x="668" y="90" width="20" height="10" rx="2"/><rect x="616" y="106" width="20" height="10" rx="2"/><rect x="642" y="106" width="20" height="10" rx="2"/><rect x="668" y="106" width="20" height="10" rx="2"/></g>
+  <rect x="600" y="60" width="130" height="70" rx="10" fill="#1d6a9e"/>
+  <g fill="#fff"><rect x="616" y="76" width="98" height="6" rx="3"/></g><g fill="#b3d3ea"><rect x="616" y="90" width="20" height="10" rx="2"/><rect x="642" y="90" width="20" height="10" rx="2"/><rect x="668" y="90" width="20" height="10" rx="2"/><rect x="616" y="106" width="20" height="10" rx="2"/><rect x="642" y="106" width="20" height="10" rx="2"/><rect x="668" y="106" width="20" height="10" rx="2"/></g>
   <rect x="600" y="150" width="130" height="70" rx="10" fill="#fff" stroke="#0f172a" stroke-width="2"/>
   <rect x="616" y="164" width="22" height="22" rx="4" fill="#0f172a"/><g fill="#cbd5e1"><rect x="646" y="166" width="68" height="6" rx="3"/><rect x="646" y="178" width="50" height="6" rx="3"/><rect x="616" y="196" width="98" height="6" rx="3"/></g>
   <rect x="600" y="240" width="130" height="70" rx="10" fill="#fff" stroke="#cbd5e1" stroke-width="2"/>
