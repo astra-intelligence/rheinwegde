@@ -39,7 +39,7 @@
   <circle cx="220" cy="160" r="6" fill="#1d6a9e"/><circle cx="580" cy="160" r="6" fill="#1d6a9e"/>
   <!-- chat bubbles -->
   <g font-family="system-ui, sans-serif" font-weight="700" font-size="16" text-anchor="middle">
-    <path d="M250 72 h70 a12 12 0 0 1 12 12 v22 a12 12 0 0 1 -12 12 h-46 l-14 12 v-12 h-10 a12 12 0 0 1 -12 -12 v-22 a12 12 0 0 1 12 -12z" fill="#0f172a"/>
+    <path d="M250 72 h70 a12 12 0 0 1 12 12 v22 a12 12 0 0 1 -12 12 h-46 l-14 12 v-12 h-10 a12 12 0 0 1 -12 -12 v-22 a12 12 0 0 1 12 -12z" fill="#1d6a9e"/>
     <text x="285" y="101" fill="#fff">Hallo</text>
     <path d="M480 72 h70 a12 12 0 0 1 12 12 v22 a12 12 0 0 1 -12 12 h-10 v12 l-14 -12 h-46 a12 12 0 0 1 -12 -12 v-22 a12 12 0 0 1 12 -12z" fill="#1d6a9e"/>
     <text x="515" y="101" fill="#fff">你好</text>
