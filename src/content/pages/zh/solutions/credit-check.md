@@ -3,7 +3,7 @@ title: 中国企业信用调查
 order: 2
 ---
 
-如果您希望了解某家企业的详细信息和信用状况,我们从公开渠道调研以下信息(示例,德文版:[RheinWeg-Beispiel-Firma-22-02-2026.xlsx](/downloads/RheinWeg-Beispiel-Firma-22-02-2026.xlsx)):
+如果您希望了解某家企业的详细信息和信用状况,我们从公开渠道调研以下信息(示例,德文版:[RheinWeg-Beispiel-Firma-14-10-2026.xlsx](/downloads/RheinWeg-Beispiel-Firma-14-10-2026.xlsx)):
 
 - 工商信息
 - 股东信息

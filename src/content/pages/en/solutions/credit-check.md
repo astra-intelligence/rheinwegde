@@ -3,7 +3,7 @@ title: Chinese Company Credit Check
 order: 2
 ---
 
-If you are interested in detailed information and the creditworthiness of a specific company, we research the following information from public sources, among others (see sample, in German: [RheinWeg-Beispiel-Firma-22-02-2026.xlsx](/downloads/RheinWeg-Beispiel-Firma-22-02-2026.xlsx)):
+If you are interested in detailed information and the creditworthiness of a specific company, we research the following information from public sources, among others (see sample, in German: [RheinWeg-Beispiel-Firma-14-10-2026.xlsx](/downloads/RheinWeg-Beispiel-Firma-14-10-2026.xlsx)):
 
 - Company information
 - Shareholder information
