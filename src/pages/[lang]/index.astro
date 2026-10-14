@@ -20,25 +20,36 @@ const workshops = (await getCollection('pages'))
 // Hero staff: five parallel wavy lines (the Rhine) carrying the opening phrase of a well-known
 // tune per language. Notes: [pos, beats]; pos = half-steps above the middle line B4 (treble clef),
 // beats: 1 = quarter. All picked in keys that need no accidentals on the notes used.
-type Song = { title: string; meter: number; pickup: number; tune: [number, number][]; beams: number[][] };
+// `style` picks the arrangement played by the button; `chords` = [note names, beats], lowest note first.
+type Song = {
+  title: string; meter: number; pickup: number; tune: [number, number][]; beams: number[][];
+  style: 'orchestra' | 'guqin'; chords: [string[], number][];
+};
 const songs: Record<Lang, Song> = {
   // Beethoven, Ode an die Freude (G major): "Freude, schöner Götterfunken".
   de: {
     title: 'Ludwig van Beethoven: Ode an die Freude',
     meter: 4, pickup: 0, beams: [],
     tune: [[0, 1], [0, 1], [1, 1], [2, 1], [2, 1], [1, 1], [0, 1], [-1, 1], [-2, 1], [-2, 1], [-1, 1], [0, 1], [0, 1.5], [-1, 0.5], [-1, 2]],
+    style: 'orchestra',
+    chords: [[['G2', 'G3', 'B3', 'D4'], 4], [['D3', 'F#3', 'A3', 'D4'], 4], [['G2', 'G3', 'B3', 'D4'], 4], [['G2', 'G3', 'B3', 'D4'], 2], [['D2', 'F#3', 'A3', 'D4'], 2]],
   },
   // Auld Lang Syne (G major): "Should auld acquaintance be forgot, and never brought to mind".
   en: {
     title: 'Auld Lang Syne',
     meter: 4, pickup: 1, beams: [],
     tune: [[-5, 1], [-2, 1.5], [-2, 0.5], [-2, 1], [0, 1], [-1, 1.5], [-2, 0.5], [-1, 1], [0, 1], [-2, 1.5], [-2, 0.5], [0, 1], [2, 1], [3, 2]],
+    style: 'orchestra',
+    chords: [[['D3', 'A3', 'D4'], 1], [['G2', 'G3', 'B3', 'D4'], 4], [['D3', 'F#3', 'A3', 'D4'], 4], [['G2', 'G3', 'B3', 'D4'], 4], [['C3', 'G3', 'C4', 'E4'], 2]],
   },
   // 古琴曲《梅花三弄》 theme (1=F): 1 55 | 5. 32 | 1 55 | 5. 32 | 1 (musicology.cn, reviews_6884).
   zh: {
     title: '古琴曲《梅花三弄》',
     meter: 2, pickup: 0, beams: [[1, 2], [4, 5], [7, 8], [10, 11]],
     tune: [[-3, 1], [1, 0.5], [1, 0.5], [1, 1.5], [-1, 0.25], [-2, 0.25], [-3, 1], [1, 0.5], [1, 0.5], [1, 1.5], [-1, 0.25], [-2, 0.25], [-3, 2]],
+    style: 'guqin',
+    // Open-string drones (F and C) every other bar, a rolled F chord at the end.
+    chords: [[['F2', 'C3'], 4], [['F2', 'C3'], 4], [['F2', 'C3', 'F3', 'C4'], 2]],
   },
 };
 const song = songs[lang];
@@ -50,15 +61,10 @@ const staffLines = [-2, -1, 0, 1, 2].map((i) => {
   const pts = Array.from({ length: 43 }, (_, k) => -10 + k * 10);
   return pts.map((x, k) => `${k ? 'L' : 'M'}${x} ${(wave(x) + i * GAP).toFixed(1)}`).join(' ');
 });
-const freq = (pos: number) => {
-  const idx = 6 + pos; // B is the 7th letter of C D E F G A B
-  const midi = 12 * (5 + Math.floor(idx / 7)) + [0, 2, 4, 5, 7, 9, 11][((idx % 7) + 7) % 7];
-  return 440 * 2 ** ((midi - 69) / 12);
-};
 const step = 350 / (song.tune.length - 1);
 const notes = song.tune.map(([pos, beats], i) => {
   const x = 32 + i * step;
-  return { x, y: wave(x) - pos * (GAP / 2), hz: freq(pos), beats };
+  return { x, y: wave(x) - pos * (GAP / 2), beats };
 });
 type Note = (typeof notes)[number];
 const beams = song.beams.map((g) => g.map((i) => notes[i]));
@@ -77,7 +83,14 @@ notes.reduce((t, n, i) => {
   if (onBar && i < notes.length - 1) bars.push((n.x + notes[i + 1].x) / 2);
   return end;
 }, 0);
-const melody = JSON.stringify(notes.map((n) => [Math.round(n.hz * 100) / 100, n.beats]));
+// Sample file names in public/audio/<instrument>/: letter + octave, sharps spelled as flats (F#3 -> Gb3).
+const noteName = (pos: number) => {
+  const idx = 6 + pos;
+  return 'CDEFGAB'[((idx % 7) + 7) % 7] + (4 + Math.floor(idx / 7));
+};
+const flatName = (name: string) => name.replace(/^([A-G])#/, (_, l: string) => ({ C: 'Db', D: 'Eb', F: 'Gb', G: 'Ab', A: 'Bb' })[l]!);
+const melody = JSON.stringify(song.tune.map(([pos, beats]) => [noteName(pos), beats]));
+const chords = JSON.stringify(song.chords.map(([names, beats]) => [names.map(flatName), beats]));
 const playLabel = `${t(lang, 'home.play')}${lang === 'zh' ? '：' : ': '}${song.title}`;
 
 // Outline icon per section (24x24, stroke).
@@ -142,11 +155,16 @@ const icons: Record<(typeof sections)[number], string> = {
         </svg>
         <div aria-hidden="true" class="absolute top-6 left-6 rounded-lg bg-white/10 px-3 py-2 text-sm font-semibold text-white ring-1 ring-white/20 backdrop-blur">DE</div>
         <div aria-hidden="true" class="absolute top-6 right-6 rounded-lg bg-white/10 px-3 py-2 text-sm font-semibold text-white ring-1 ring-white/20 backdrop-blur">CN</div>
-        <p aria-hidden="true" class="absolute bottom-7 left-6 text-xl font-semibold tracking-tight text-white/95">Deutsch · English · 中文</p>
+        <label class="absolute bottom-6 left-6 flex h-11 items-center gap-2.5 rounded-full bg-white/10 px-4 text-white ring-1 ring-white/20 backdrop-blur" title={t(lang, 'home.volume')}>
+          <svg aria-hidden="true" class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H3v6h3l5 4V5zM15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13" /></svg>
+          <input id="melody-volume" type="range" min="0" max="1" step="0.05" value="0.8" aria-label={t(lang, 'home.volume')} class="h-1 w-28 cursor-pointer accent-white" />
+        </label>
         <button
           type="button"
           id="play-melody"
           data-melody={melody}
+          data-chords={chords}
+          data-style={song.style}
           aria-label={playLabel}
           title={playLabel}
           class="absolute right-6 bottom-6 flex h-11 w-11 items-center justify-center rounded-full bg-white text-brand-700 shadow-lg ring-1 ring-white/40 transition hover:scale-105"
@@ -237,43 +255,149 @@ const icons: Record<(typeof sections)[number], string> = {
   </section>
 
   <script>
-    // Play the hero staff with Web Audio; each note lights up while it sounds. Starts on click only.
+    // Play the hero staff's opening phrase from recorded instrument samples (FluidR3_GM, CC BY 3.0,
+    // see public/audio/CREDITS.txt): a small orchestra (de, en) or koto and shakuhachi standing in
+    // for guqin and xiao (zh). The music fades out from the last note on. Each note lights up while
+    // it sounds. Samples load on the first click.
     const button = document.getElementById('play-melody') as HTMLButtonElement;
     const heads = [...document.querySelectorAll<SVGGElement>('[data-note]')];
-    const melody: [number, number][] = JSON.parse(button.dataset.melody!);
+    const melody: [string, number][] = JSON.parse(button.dataset.melody!);
+    const chords: [string[], number][] = JSON.parse(button.dataset.chords!);
+    const guqin = button.dataset.style === 'guqin';
+    const FADE = 4; // seconds from the last note's onset to silence
     let ctx: AudioContext | undefined;
+    let volume: GainNode | undefined; // listener's volume, kept across plays and changeable while playing
+    let reverb: AudioBuffer | undefined;
+    const samples = new Map<string, Promise<AudioBuffer>>();
     let playing = false;
 
-    button.addEventListener('click', () => {
-      if (playing) return;
-      playing = true;
-      ctx ??= new AudioContext();
-      const beat = 0.55; // seconds per quarter note
-      let t = ctx.currentTime + 0.05;
-      let head = 0;
-      heads.forEach((h) => (h.style.opacity = '0.35'));
-      melody.forEach(([hz, beats]) => {
-        const len = beats * beat;
-        if (hz) {
-          const osc = ctx!.createOscillator();
-          const gain = ctx!.createGain();
-          osc.type = 'triangle';
-          osc.frequency.value = hz;
-          gain.gain.setValueAtTime(0, t);
-          gain.gain.linearRampToValueAtTime(0.3, t + 0.02);
-          gain.gain.exponentialRampToValueAtTime(0.001, t + len * 0.95);
-          osc.connect(gain).connect(ctx!.destination);
-          osc.start(t);
-          osc.stop(t + len);
-          const h = heads[head++];
-          setTimeout(() => (h.style.opacity = '1'), (t - ctx!.currentTime) * 1000);
+    // Volume slider, remembered per browser.
+    const slider = document.getElementById('melody-volume') as HTMLInputElement;
+    try {
+      const saved = localStorage.getItem('melody-volume');
+      if (saved !== null) slider.value = saved;
+    } catch {}
+    slider.addEventListener('input', () => {
+      if (volume) volume.gain.setTargetAtTime(Number(slider.value), volume.context.currentTime, 0.02);
+      try {
+        localStorage.setItem('melody-volume', slider.value);
+      } catch {}
+    });
+
+    type Voice = { inst: string; note: string; t: number; len: number; level: number; attack: number; release: number; cutoff?: number };
+    // zh opens with a rising pentatonic sweep (刮奏) before the melody.
+    const SWEEP = ['F3', 'G3', 'A3', 'C4', 'D4', 'F4', 'G4', 'A4', 'C5'];
+    const octaveUp = (note: string) => note.replace(/\d$/, (o) => String(Number(o) + 1));
+
+    const load = (ac: AudioContext, path: string) => {
+      if (!samples.has(path)) samples.set(path, fetch(`/audio/${path}.mp3`).then((r) => r.arrayBuffer()).then((b) => ac.decodeAudioData(b)));
+      return samples.get(path)!;
+    };
+
+    // Hall reverb: decaying stereo noise.
+    const makeReverb = (ac: AudioContext, secs: number) => {
+      const buf = ac.createBuffer(2, ac.sampleRate * secs, ac.sampleRate);
+      for (let c = 0; c < 2; c++) {
+        const d = buf.getChannelData(c);
+        for (let i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / d.length) ** 3;
+      }
+      return buf;
+    };
+
+    // Voices with times in seconds from the start; also returns each melody note's onset.
+    const arrange = (beat: number) => {
+      const voices: Voice[] = [];
+      const onsets: number[] = [];
+      const lead = guqin ? SWEEP.length * 0.07 + 0.35 : 0;
+      SWEEP.forEach((note, i) => {
+        if (guqin) voices.push({ inst: 'koto', note, t: i * 0.07, len: 0.6, level: 0.2 + i * 0.03, attack: 0.005, release: 0.8, cutoff: 3200 });
+      });
+      const fadeAt = lead + melody.slice(0, -1).reduce((s, [, b]) => s + b * beat, 0);
+      const end = fadeAt + FADE;
+      let t = lead;
+      chords.forEach(([names, beats], i) => {
+        const last = i === chords.length - 1;
+        const len = last ? end - t : beats * beat;
+        names.forEach((note, k) => {
+          if (guqin) voices.push({ inst: 'koto', note, t: t + k * (last ? 0.12 : 0.06), len, level: 0.45, attack: 0.005, release: 1.2, cutoff: 1800 });
+          else if (k === 0) voices.push({ inst: 'contrabass', note, t, len, level: 0.6, attack: 0.03, release: 0.4 });
+          else voices.push({ inst: 'strings', note, t, len, level: 0.22, attack: 0.15, release: 0.5 });
+        });
+        if (!guqin && (i === 0 || last)) voices.push({ inst: 'timpani', note: names[0], t, len: 2.5, level: 0.5, attack: 0.005, release: 0.5 });
+        t += len;
+      });
+      t = lead;
+      melody.forEach(([note, beats], i) => {
+        const len = i === melody.length - 1 ? FADE : beats * beat;
+        onsets.push(t);
+        if (guqin) {
+          // Koto darkened toward guqin; the shakuhachi (xiao) only joins on held notes.
+          voices.push({ inst: 'koto', note, t, len, level: 0.85, attack: 0.005, release: 1.2, cutoff: 2600 });
+          if (beats >= 1) voices.push({ inst: 'shakuhachi', note, t: t + 0.06, len, level: 0.14, attack: 0.25, release: 0.5, cutoff: 2200 });
+        } else {
+          voices.push({ inst: 'strings', note, t, len, level: 0.55, attack: 0.04, release: 0.3 });
+          voices.push({ inst: 'flute', note: octaveUp(note), t, len, level: 0.22, attack: 0.04, release: 0.3 });
         }
         t += len;
       });
+      return { voices, onsets, fadeAt, end };
+    };
+
+    button.addEventListener('click', async () => {
+      if (playing) return;
+      playing = true;
+      if (!ctx) {
+        ctx = new AudioContext();
+        volume = ctx.createGain();
+        volume.gain.value = Number(slider.value);
+        volume.connect(ctx.destination);
+      }
+      reverb ??= makeReverb(ctx, 2.8);
+      const ac = ctx;
+      const { voices, onsets, fadeAt, end } = arrange(guqin ? 0.66 : 0.55); // seconds per quarter note
+      const buffers = await Promise.all(voices.map((v) => load(ac, `${v.inst}/${v.note}`)));
+      const start = ac.currentTime + 0.05;
+
+      // Signal chain: voices -> master (fade) -> dry + hall reverb -> compressor -> volume -> speakers.
+      const master = ac.createGain();
+      const lift = guqin ? 4 : 2.5; // samples are quiet; match the three songs' loudness
+      master.gain.value = lift;
+      master.gain.setValueAtTime(lift, start + fadeAt);
+      master.gain.exponentialRampToValueAtTime(0.0001, start + end);
+      const comp = ac.createDynamicsCompressor();
+      const hall = ac.createConvolver();
+      hall.buffer = reverb;
+      const wet = ac.createGain();
+      wet.gain.value = guqin ? 0.6 : 0.3;
+      master.connect(comp);
+      master.connect(hall).connect(wet).connect(comp);
+      comp.connect(volume!);
+
+      voices.forEach((v, i) => {
+        const t = start + v.t;
+        const src = ac.createBufferSource();
+        src.buffer = buffers[i];
+        const env = ac.createGain();
+        env.gain.setValueAtTime(0, t);
+        env.gain.linearRampToValueAtTime(v.level, t + v.attack);
+        env.gain.setValueAtTime(v.level, t + v.len);
+        env.gain.linearRampToValueAtTime(0, t + v.len + v.release);
+        if (v.cutoff) {
+          const lowpass = ac.createBiquadFilter();
+          lowpass.frequency.value = v.cutoff;
+          src.connect(lowpass).connect(env);
+        } else src.connect(env);
+        env.connect(master);
+        src.start(t);
+        src.stop(t + v.len + v.release);
+      });
+
+      heads.forEach((h) => (h.style.opacity = '0.35'));
+      onsets.forEach((o, i) => setTimeout(() => (heads[i].style.opacity = '1'), (start + o - ac.currentTime) * 1000));
       setTimeout(() => {
         heads.forEach((h) => (h.style.opacity = ''));
         playing = false;
-      }, (t - ctx.currentTime) * 1000 + 200);
+      }, (start + end - ac.currentTime) * 1000 + 200);
     });
   </script>
 </Base>
