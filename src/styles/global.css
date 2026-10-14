@@ -1,4 +1,18 @@
 @import "tailwindcss";
+@import "@fontsource-variable/inter";
+
+/* Brand: one accent colour (Rhine blue), self-hosted Inter (no Google Fonts request, GDPR). */
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, "PingFang SC", "Microsoft YaHei", sans-serif;
+  --color-brand-50: #eff6fb;
+  --color-brand-100: #d8e9f5;
+  --color-brand-200: #b3d3ea;
+  --color-brand-500: #2a7fb8;
+  --color-brand-600: #1d6a9e;
+  --color-brand-700: #175680;
+  --color-brand-900: #0d2e45;
+}
+
 /* Minimal styles for rendered Markdown (Tailwind preflight resets headings, lists, links). */
 @layer components {
   .content h2 { @apply mt-8 text-xl font-semibold; }
@@ -6,5 +20,5 @@
   .content ul { @apply list-disc pl-6; }
   .content ol { @apply list-decimal pl-6; }
   .content img { @apply rounded-lg border border-slate-200; }
-  .content a { @apply text-blue-700 underline hover:text-blue-900; }
+  .content a { @apply text-brand-600 underline hover:text-brand-700; }
 }
