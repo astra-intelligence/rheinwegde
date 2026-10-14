@@ -17,8 +17,32 @@ const workshops = (await getCollection('pages'))
   .slice(0, 3)
   .map((p) => ({ ...p, slug: p.id.split('/').pop() }));
 
-// Hero staff: five parallel wavy lines (the Rhine). Opening phrases of Silcher's "Loreley"
-// ("Ich weiß nicht, was soll es bedeuten") and the folk song 茉莉花 ("好一朵美丽的茉莉花"), both in C major.
+// Hero staff: five parallel wavy lines (the Rhine) carrying the opening phrase of a well-known
+// tune per language. Notes: [pos, beats]; pos = half-steps above the middle line B4 (treble clef),
+// beats: 1 = quarter. All picked in keys that need no accidentals on the notes used.
+type Song = { title: string; meter: number; pickup: number; tune: [number, number][]; beams: number[][] };
+const songs: Record<Lang, Song> = {
+  // Beethoven, Ode an die Freude (G major): "Freude, schöner Götterfunken".
+  de: {
+    title: 'Ludwig van Beethoven: Ode an die Freude',
+    meter: 4, pickup: 0, beams: [],
+    tune: [[0, 1], [0, 1], [1, 1], [2, 1], [2, 1], [1, 1], [0, 1], [-1, 1], [-2, 1], [-2, 1], [-1, 1], [0, 1], [0, 1.5], [-1, 0.5], [-1, 2]],
+  },
+  // Auld Lang Syne (G major): "Should auld acquaintance be forgot, and never brought to mind".
+  en: {
+    title: 'Auld Lang Syne',
+    meter: 4, pickup: 1, beams: [],
+    tune: [[-5, 1], [-2, 1.5], [-2, 0.5], [-2, 1], [0, 1], [-1, 1.5], [-2, 0.5], [-1, 1], [0, 1], [-2, 1.5], [-2, 0.5], [0, 1], [2, 1], [3, 2]],
+  },
+  // 古琴曲《梅花三弄》 theme (1=F): 1 55 | 5. 32 | 1 55 | 5. 32 | 1 (musicology.cn, reviews_6884).
+  zh: {
+    title: '古琴曲《梅花三弄》',
+    meter: 2, pickup: 0, beams: [[1, 2], [4, 5], [7, 8], [10, 11]],
+    tune: [[-3, 1], [1, 0.5], [1, 0.5], [1, 1.5], [-1, 0.25], [-2, 0.25], [-3, 1], [1, 0.5], [1, 0.5], [1, 1.5], [-1, 0.25], [-2, 0.25], [-3, 2]],
+  },
+};
+const song = songs[lang];
+
 const GAP = 12; // distance between staff lines
 const STEM = 26;
 const wave = (x: number) => 150 + 24 * Math.sin((x / 400) * 2 * Math.PI + 0.6);
@@ -26,33 +50,35 @@ const staffLines = [-2, -1, 0, 1, 2].map((i) => {
   const pts = Array.from({ length: 43 }, (_, k) => -10 + k * 10);
   return pts.map((x, k) => `${k ? 'L' : 'M'}${x} ${(wave(x) + i * GAP).toFixed(1)}`).join(' ');
 });
-// pos: half-steps above the middle line B4 (treble clef); beats: 1 = quarter note.
 const freq = (pos: number) => {
   const idx = 6 + pos; // B is the 7th letter of C D E F G A B
   const midi = 12 * (5 + Math.floor(idx / 7)) + [0, 2, 4, 5, 7, 9, 11][((idx % 7) + 7) % 7];
   return 440 * 2 ** ((midi - 69) / 12);
 };
-type Note = { x: number; y: number; hz: number; beats: number };
-const phrase = (x0: number, step: number, tune: [number, number][]): Note[] =>
-  tune.map(([pos, beats], i) => {
-    const x = x0 + i * step;
-    return { x, y: wave(x) - pos * (GAP / 2), hz: freq(pos), beats };
-  });
-const loreley = phrase(34, 18.5, [[-2, 0.5], [-2, 0.75], [-1, 0.25], [-2, 0.5], [1, 0.5], [0, 0.5], [-1, 0.5], [-2, 1.5], [-3, 1]]);
-const molihua = phrase(220, 16.5, [[-4, 1], [-4, 0.5], [-2, 0.5], [-1, 0.5], [1, 0.5], [1, 0.5], [-1, 0.5], [-2, 1], [-2, 0.5], [-1, 0.5], [-2, 2]]);
-const notes = [...loreley, ...molihua];
-// Beamed groups; a lone eighth gets a flag, the 16th in the Loreley gets a partial second beam.
-const beams = [loreley.slice(1, 4), loreley.slice(4, 7), ...[1, 3, 5, 8].map((i) => molihua.slice(i, i + 2))];
+const step = 350 / (song.tune.length - 1);
+const notes = song.tune.map(([pos, beats], i) => {
+  const x = 32 + i * step;
+  return { x, y: wave(x) - pos * (GAP / 2), hz: freq(pos), beats };
+});
+type Note = (typeof notes)[number];
+const beams = song.beams.map((g) => g.map((i) => notes[i]));
 const stemTop = (n: Note) => {
   const g = beams.find((grp) => grp.includes(n));
   if (!g) return n.y - STEM;
   const [a, z] = [g[0], g[g.length - 1]];
   return a.y - STEM + ((z.y - a.y) * (n.x - a.x)) / (z.x - a.x);
 };
-const flagged = [loreley[0]];
-const barX = 202;
-// Playback: hz 0 is a rest between the two phrases.
-const melody = JSON.stringify([...loreley, { hz: 0, beats: 1 }, ...molihua].map((n) => [Math.round(n.hz * 100) / 100, n.beats]));
+const flagged = notes.filter((n) => n.beats < 1 && !beams.some((g) => g.includes(n)));
+// Bar lines halfway between notes, after the pickup and then every `meter` beats.
+const bars: number[] = [];
+notes.reduce((t, n, i) => {
+  const end = t + n.beats;
+  const onBar = end === song.pickup || (end > song.pickup && (end - song.pickup) % song.meter === 0);
+  if (onBar && i < notes.length - 1) bars.push((n.x + notes[i + 1].x) / 2);
+  return end;
+}, 0);
+const melody = JSON.stringify(notes.map((n) => [Math.round(n.hz * 100) / 100, n.beats]));
+const playLabel = `${t(lang, 'home.play')}${lang === 'zh' ? '：' : ': '}${song.title}`;
 
 // Outline icon per section (24x24, stroke).
 const icons: Record<(typeof sections)[number], string> = {
@@ -91,7 +117,9 @@ const icons: Record<(typeof sections)[number], string> = {
           {staffLines.map((d) => (
             <path d={d} fill="none" stroke="white" stroke-opacity="0.45" stroke-width="1.5" />
           ))}
-          <line x1={barX} y1={wave(barX) - 2 * GAP} x2={barX} y2={wave(barX) + 2 * GAP} stroke="white" stroke-opacity="0.6" stroke-width="1.5" />
+          {bars.map((x) => (
+            <line x1={x} y1={wave(x) - 2 * GAP} x2={x} y2={wave(x) + 2 * GAP} stroke="white" stroke-opacity="0.45" stroke-width="1.5" />
+          ))}
           <g fill="white" stroke="white">
             {notes.map((n) => (
               <g data-note class="transition-opacity duration-150">
@@ -106,16 +134,10 @@ const icons: Record<(typeof sections)[number], string> = {
             ))}
             {beams.map((g) => {
               const [a, z] = [g[0], g[g.length - 1]];
-              return <path d={`M${a.x + 5.2} ${stemTop(a)} L${z.x + 5.2} ${stemTop(z)} l0 4 L${a.x + 5.2} ${stemTop(a) + 4} Z`} stroke="none" />;
+              const beam = (dy: number) => `M${a.x + 5.2} ${stemTop(a) + dy} L${z.x + 5.2} ${stemTop(z) + dy} l0 3.5 L${a.x + 5.2} ${stemTop(a) + dy + 3.5} Z`;
+              // Sixteenths get a second beam.
+              return <path d={g.every((n) => n.beats === 0.25) ? `${beam(0)} ${beam(6)}` : beam(0)} stroke="none" />;
             })}
-            {(() => {
-              const n = loreley[2];
-              return <path d={`M${n.x - 2.8} ${stemTop(n) + 6} L${n.x + 5.2} ${stemTop(n) + 6} l0 3.5 L${n.x - 2.8} ${stemTop(n) + 9.5} Z`} stroke="none" />;
-            })()}
-          </g>
-          <g fill="white" fill-opacity="0.7" font-size="11" text-anchor="middle">
-            <text x="108" y={wave(108) + 2 * GAP + 22}>Loreley</text>
-            <text x="302" y={wave(302) + 2 * GAP + 22}>茉莉花</text>
           </g>
         </svg>
         <div aria-hidden="true" class="absolute top-6 left-6 rounded-lg bg-white/10 px-3 py-2 text-sm font-semibold text-white ring-1 ring-white/20 backdrop-blur">DE</div>
@@ -125,8 +147,8 @@ const icons: Record<(typeof sections)[number], string> = {
           type="button"
           id="play-melody"
           data-melody={melody}
-          aria-label={t(lang, 'home.play')}
-          title={t(lang, 'home.play')}
+          aria-label={playLabel}
+          title={playLabel}
           class="absolute right-6 bottom-6 flex h-11 w-11 items-center justify-center rounded-full bg-white text-brand-700 shadow-lg ring-1 ring-white/40 transition hover:scale-105"
         >
           <svg aria-hidden="true" class="ml-0.5 h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z" /></svg>
