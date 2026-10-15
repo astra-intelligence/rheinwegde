@@ -14,6 +14,11 @@ interface Props {
 
 const { lang, title, description, path = '', wide = false } = Astro.props;
 const href = (l: Lang, p: string) => `/${l}/${p ? `${p}/` : ''}`;
+const pageTitle = title === 'RheinWeg' ? title : `${title} | RheinWeg`;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL('/og-image.jpg', Astro.site).href;
+const locales: Record<Lang, string> = { de: 'de_DE', en: 'en_US', zh: 'zh_CN' };
+const desc = description ?? t(lang, 'home.tagline');
 ---
 
 <!doctype html>
@@ -22,11 +27,26 @@ const href = (l: Lang, p: string) => `/${l}/${p ? `${p}/` : ''}`;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>{title === 'RheinWeg' ? title : `${title} | RheinWeg`}</title>
+    <title>{pageTitle}</title>
     {description && <meta name="description" content={description} />}
+    <link rel="canonical" href={canonical} />
     {Object.keys(languages).map((l) => (
       <link rel="alternate" hreflang={l} href={new URL(href(l as Lang, path), Astro.site)} />
     ))}
+    <meta property="og:site_name" content="RheinWeg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={locales[lang]} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="RheinWeg — Brücke zwischen Deutschland und China: Handel, Software und KI." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={desc} />
+    <meta name="twitter:image" content={ogImage} />
   </head>
   <body class="flex min-h-screen flex-col bg-white text-slate-900 antialiased">
     <header class="sticky top-0 z-20 border-b border-slate-200/80 bg-white/85 backdrop-blur">
