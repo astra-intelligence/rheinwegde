@@ -7,4 +7,4 @@ order: 1
 
 ![AiBlocks 首页](/images/aiblocks.webp)
 
-[打开 AiBlocks](https://aiblocks-six.vercel.app/)
+[打开 AiBlocks](https://aiblocks.rheinwegde.de/)

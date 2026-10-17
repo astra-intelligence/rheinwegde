@@ -7,4 +7,4 @@ Eine Workflow-Engine für Prozesse, die anhalten und wieder starten können. Wor
 
 ![PATH-Designer mit Workflow und Laufdetails](/images/path.webp)
 
-[PATH öffnen](https://han-mac-mini.tail5cec41.ts.net/)
+[PATH öffnen](https://path.rheinwegde.de/)
