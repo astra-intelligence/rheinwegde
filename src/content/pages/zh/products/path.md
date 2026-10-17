@@ -7,4 +7,4 @@ order: 2
 
 ![PATH 设计器：工作流与运行详情](/images/path.webp)
 
-[打开 PATH](https://han-mac-mini.tail5cec41.ts.net/)
+[打开 PATH](https://path.rheinwegde.de/)

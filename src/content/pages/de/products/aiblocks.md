@@ -7,4 +7,4 @@ Ein offener Marktplatz für wiederverwendbare KI-Komponenten: Prompts, Skills, S
 
 ![AiBlocks-Startseite](/images/aiblocks.webp)
 
-[AiBlocks öffnen](https://aiblocks-six.vercel.app/)
+[AiBlocks öffnen](https://aiblocks.rheinwegde.de/)

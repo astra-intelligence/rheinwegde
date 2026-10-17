@@ -7,4 +7,4 @@ An open marketplace for reusable AI components: prompts, skills, subagents, MCP 
 
 ![AiBlocks home page](/images/aiblocks.webp)
 
-[Open AiBlocks](https://aiblocks-six.vercel.app/)
+[Open AiBlocks](https://aiblocks.rheinwegde.de/)
