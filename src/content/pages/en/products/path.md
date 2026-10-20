@@ -7,4 +7,4 @@ A workflow engine for processes that can stop and start again. Workflows are JSO
 
 ![PATH designer with workflow and run details](/images/path.webp)
 
-[Open PATH](https://han-mac-mini.tail5cec41.ts.net/)
+[Open PATH](https://path.rheinwegde.de/)

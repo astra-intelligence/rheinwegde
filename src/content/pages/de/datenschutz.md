@@ -13,9 +13,11 @@ Im Rosengärtchen 70, 61440 Oberursel (Taunus), Deutschland
 Telefon: +49 160 1168307  
 E-Mail: [rheinwegde@gmail.com](mailto:rheinwegde@gmail.com)
 
-## 2. Keine Cookies, kein Tracking
+## 2. Ein Sprach-Cookie, kein Tracking
 
-Diese Website setzt keine Cookies, verwendet keine Analyse- oder Tracking-Werkzeuge und bindet keine Inhalte Dritter wie Schriftarten, Videos oder Karten ein. Alle Bilder und Dateien werden von unserem eigenen Webspace ausgeliefert.
+Diese Website setzt genau ein Cookie: `RHEINWEG_LOCALE` merkt sich die Sprache, die Sie zuletzt gewählt oder angesehen haben, damit unsere Website und [AiBlocks](https://aiblocks.rheinwegde.de/) in dieser Sprache öffnen. Das Cookie gilt für rheinwegde.de und alle Subdomains, enthält nur den Sprachcode (`de`, `en` oder `zh-CN`) und wird nach einem Jahr gelöscht. Es ist für die von Ihnen gewünschte Sprachauswahl unbedingt erforderlich (§ 25 Abs. 2 Nr. 2 TDDDG).
+
+Wir verwenden keine Analyse- oder Tracking-Werkzeuge und binden keine Inhalte Dritter wie Schriftarten, Videos oder Karten ein. Alle Bilder und Dateien werden von unserem eigenen Webspace ausgeliefert.
 
 ## 3. Hosting und Server-Logfiles
 

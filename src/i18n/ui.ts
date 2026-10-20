@@ -1,7 +1,11 @@
 export const languages = { de: 'Deutsch', en: 'English', zh: '中文' } as const;
 export type Lang = keyof typeof languages;
-// English names shown under the native name in the language picker.
-export const languageNamesEn: Record<Lang, string> = { de: 'German', en: 'English', zh: 'Chinese' };
+// Language names in the current UI language, shown under the native name in the language picker.
+export const languageNames: Record<Lang, Record<Lang, string>> = {
+  de: { de: 'Deutsch', en: 'Englisch', zh: 'Chinesisch' },
+  en: { de: 'German', en: 'English', zh: 'Chinese' },
+  zh: { de: '德语', en: '英语', zh: '中文' },
+};
 export const defaultLang: Lang = 'de';
 
 // Sections shown in the main navigation, in order. Slugs match the Markdown file names.
