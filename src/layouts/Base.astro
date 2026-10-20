@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { languages, languageNamesEn, sections, legalPages, t, type Lang } from '../i18n/ui';
+import { languages, languageNames, sections, legalPages, t, type Lang } from '../i18n/ui';
 
 interface Props {
   lang: Lang;
@@ -98,7 +98,7 @@ const href = (l: Lang, p: string) => `/${l}/${p ? `${p}/` : ''}`;
             >
               <span class="flex flex-col">
                 <span>{label}</span>
-                <span lang="en" class="text-sm text-slate-500">{languageNamesEn[l as Lang]}</span>
+                <span lang={lang} class="text-sm text-slate-500">{languageNames[lang][l as Lang]}</span>
               </span>
               {l === lang && (
                 <svg aria-hidden="true" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7" /></svg>
