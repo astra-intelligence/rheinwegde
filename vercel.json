@@ -3,6 +3,24 @@
   "redirects": [
     {
       "source": "/",
+      "has": [{ "type": "cookie", "key": "RHEINWEG_LOCALE", "value": "^zh-CN$" }],
+      "destination": "/zh/",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [{ "type": "cookie", "key": "RHEINWEG_LOCALE", "value": "^en$" }],
+      "destination": "/en/",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [{ "type": "cookie", "key": "RHEINWEG_LOCALE", "value": "^de$" }],
+      "destination": "/de/",
+      "permanent": false
+    },
+    {
+      "source": "/",
       "has": [{ "type": "header", "key": "accept-language", "value": "^zh.*" }],
       "destination": "/zh/",
       "permanent": false

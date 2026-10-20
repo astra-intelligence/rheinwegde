@@ -27,6 +27,34 @@ const href = (l: Lang, p: string) => `/${l}/${p ? `${p}/` : ''}`;
     {Object.keys(languages).map((l) => (
       <link rel="alternate" hreflang={l} href={new URL(href(l as Lang, path), Astro.site)} />
     ))}
+    <script is:inline>
+      // Language choice shared with aiblocks.rheinwegde.de through one cookie on
+      // the parent domain. Values are AiBlocks' Locale ids, so Chinese is "zh-CN".
+      // A remembered choice wins over the URL: open the same page in that language.
+      // Without a cookie, remember the language of this page.
+      (function () {
+        var NAME = 'RHEINWEG_LOCALE';
+        var toCookie = { de: 'de', en: 'en', zh: 'zh-CN' };
+        var fromCookie = { de: 'de', en: 'en', 'zh-CN': 'zh' };
+        var domain = /(^|\.)rheinwegde\.de$/.test(location.hostname) ? '; domain=.rheinwegde.de' : '';
+        window.rwSetLocale = function (lang) {
+          document.cookie = NAME + '=' + toCookie[lang] + '; path=/; max-age=31536000; samesite=lax' + domain;
+        };
+        function sync() {
+          var page = document.documentElement.lang;
+          var m = document.cookie.match(/(?:^|; )RHEINWEG_LOCALE=([^;]*)/);
+          var want = m && fromCookie[m[1]];
+          if (!want) return window.rwSetLocale(page);
+          var prefix = /^\/(de|en|zh)(?=\/|$)/;
+          if (want !== page && prefix.test(location.pathname)) {
+            location.replace(location.pathname.replace(prefix, '/' + want) + location.search + location.hash);
+          }
+        }
+        sync();
+        // Pages restored from the back/forward cache do not rerun this script.
+        addEventListener('pageshow', function (e) { if (e.persisted) sync(); });
+      })();
+    </script>
   </head>
   <body class="flex min-h-screen flex-col bg-white text-slate-900 antialiased">
     <header class="sticky top-0 z-20 border-b border-slate-200/80 bg-white/85 backdrop-blur">
@@ -93,6 +121,7 @@ const href = (l: Lang, p: string) => `/${l}/${p ? `${p}/` : ''}`;
               href={href(l as Lang, path)}
               hreflang={l}
               lang={l}
+              data-lang-choice={l}
               aria-current={l === lang ? 'true' : undefined}
               class="flex items-center justify-between rounded-lg px-3 py-2 hover:bg-slate-100 aria-[current]:bg-slate-50"
             >
@@ -115,6 +144,10 @@ const href = (l: Lang, p: string) => `/${l}/${p ? `${p}/` : ''}`;
       dialog.querySelector('[data-lang-close]')?.addEventListener('click', () => dialog.close());
       // Close when clicking the backdrop (outside the dialog box).
       dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
+      // Remember the picked language before leaving, so the next page keeps it.
+      dialog.querySelectorAll<HTMLElement>('[data-lang-choice]').forEach((a) => {
+        a.addEventListener('click', () => (window as any).rwSetLocale(a.dataset.langChoice));
+      });
     </script>
   </body>
 </html>

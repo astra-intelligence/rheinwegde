@@ -15,9 +15,11 @@ Im Rosengärtchen 70, 61440 Oberursel (Taunus), Germany
 Phone: +49 160 1168307  
 Email: [rheinwegde@gmail.com](mailto:rheinwegde@gmail.com)
 
-## 2. No cookies, no tracking
+## 2. One language cookie, no tracking
 
-This website sets no cookies, uses no analytics or tracking tools, and embeds no third-party content such as fonts, videos or maps. All images and files are served from our own web space.
+This website sets exactly one cookie: `RHEINWEG_LOCALE` remembers the language you last chose or viewed, so our website and [AiBlocks](https://aiblocks.rheinwegde.de/) open in that language. The cookie applies to rheinwegde.de and all its subdomains, holds only the language code (`de`, `en` or `zh-CN`) and is deleted after one year. It is strictly necessary for the language choice you request (Section 25(2) No. 2 TDDDG).
+
+We use no analytics or tracking tools and embed no third-party content such as fonts, videos or maps. All images and files are served from our own web space.
 
 ## 3. Hosting and server log files
 
